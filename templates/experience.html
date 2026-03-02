@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}About & Experience | Jeff Darick{% endblock %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto w-full px-6 py-12 lg:py-20 mt-10">
+    <!-- Hero Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
+        <div class="flex flex-col gap-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
+                <span class="size-2 rounded-full bg-primary animate-pulse"></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-primary">About the Engineer</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight tracking-tight glow-text">
+                Architecting <span class="text-primary">Reliability</span> & Scale.
+            </h1>
+            <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-xl">
+                I am a Full Stack Engineer specialized in Django and Cloud Native infrastructure. I bridge the gap between complex backend logic and seamless production deployments through automation and observability.
+            </p>
+            <div class="flex gap-4 pt-4">
+                <a href="{% url 'cv' %}" class="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:brightness-110 transition-all">Download CV</a>
+                <a href="#" class="border border-slate-300 dark:border-slate-700 px-6 py-3 rounded-lg font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">GitHub</a>
+            </div>
+        </div>
+        <div class="relative">
+            <div class="aspect-square bg-slate-200 dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-700" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAaOFsIAFjK1HUX8Q_95nhPuut9S6hpfRlq6WtM_yNCFerTV3gNggb5ZehOhwAZRQznzo_oWidyTTg2HxttuTvkRwB74MZtxum2-gppaIjXZ0Ojt7YBqpEA6fnqe0qgYR0UGeDLVnOGv5_O3So9anFipW6OxsStP3U781_uW2UneFPPgKacQTkRx-gQD3U8KfIR8_MoWoW_0skkRIUoBeyTKetq7aeZr-XmChMEKHQlQLR_FFG7yRQr-h9-E64ZPa0tQnswrXR21V98'); background-size: cover;">
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
+            </div>
+            <!-- Stats Floating Card -->
+            <div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xl max-w-[200px]">
+                <p class="text-3xl font-bold text-primary">6+ Yrs</p>
+                <p class="text-xs text-slate-500 uppercase font-bold tracking-widest mt-1">Experience</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Philosophy Section -->
+    <div class="mb-24">
+        <div class="flex flex-col gap-2 mb-10">
+            <h2 class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight glow-text">The Journey & Philosophy</h2>
+            <div class="h-1 w-20 bg-primary rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div class="p-8 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+                <span class="material-symbols-outlined text-primary text-3xl mb-4">auto_fix_high</span>
+                <h3 class="text-white font-bold text-xl mb-3">Automation First</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">If a task is repetitive, it belongs in a script. My philosophy centers on eliminating manual toil through robust CI/CD and IaC.</p>
+            </div>
+            <div class="p-8 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+                <span class="material-symbols-outlined text-primary text-3xl mb-4">security</span>
+                <h3 class="text-white font-bold text-xl mb-3">Security by Design</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Security is not an afterthought. I integrate DevSecOps practices from the very first line of code and infrastructure config.</p>
+            </div>
+            <div class="p-6 sm:p-8 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+                <span class="material-symbols-outlined text-primary text-3xl mb-4">monitoring</span>
+                <h3 class="text-white font-bold text-xl mb-3">Observability</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">You can't manage what you can't measure. I prioritize deep instrumentation and logging for rapid incident response.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline Section -->
+    <div class="mb-24">
+        <div class="flex flex-col gap-2 mb-10">
+            <h2 class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight glow-text">Professional Timeline</h2>
+            <div class="h-1 w-20 bg-primary rounded-full"></div>
+        </div>
+        <div class="space-y-12 relative pl-8 timeline-line">
+            <!-- Exp Item 1 -->
+            <div class="relative">
+                <div class="absolute -left-[41px] top-0 size-4 rounded-full bg-primary border-4 border-background-dark"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Senior DevOps Engineer</h3>
+                        <p class="text-primary font-medium">CloudScale Solutions</p>
+                    </div>
+                    <span class="text-sm font-bold text-slate-500 bg-slate-800/50 px-3 py-1 rounded">2021 — PRESENT</span>
+                </div>
+                <p class="text-slate-400 mt-4 leading-relaxed max-w-3xl">
+                    Leading the migration of monolithic Django applications to Kubernetes-based microservices. Reduced deployment time by 60% using Terraform and GitHub Actions. Orchestrating multi-cloud environments across AWS and GCP.
+                </p>
+            </div>
+            <!-- Exp Item 2 -->
+            <div class="relative">
+                <div class="absolute -left-[41px] top-0 size-4 rounded-full bg-slate-700 border-4 border-background-dark"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Full Stack Django Developer</h3>
+                        <p class="text-primary font-medium">FinTech Innovations</p>
+                    </div>
+                    <span class="text-sm font-bold text-slate-500 bg-slate-800/50 px-3 py-1 rounded">2018 — 2021</span>
+                </div>
+                <p class="text-slate-400 mt-4 leading-relaxed max-w-3xl">
+                    Developed high-frequency trading dashboards and internal APIs. Implemented rigorous automated testing suites and managed PostgreSQL optimization for 10TB+ datasets.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+    .timeline-line::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, #3d84f5, transparent);
+    }
+</style>
+{% endblock %}

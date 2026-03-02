@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Case Study: Django & Kubernetes | Jeff Darick{% endblock %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto px-6 py-8 w-full mt-10">
+    <!-- Breadcrumbs -->
+    <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-8">
+        <a class="hover:text-primary" href="{% url 'home' %}">Home</a>
+        <span class="material-symbols-outlined !text-sm">chevron_right</span>
+        <a class="hover:text-primary" href="{% url 'project_list' %}">Projects</a>
+        <span class="material-symbols-outlined !text-sm">chevron_right</span>
+        <span class="text-slate-900 dark:text-slate-100 font-medium">Django & Kubernetes CI/CD</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Left Sidebar -->
+        <aside class="lg:col-span-3 flex flex-col gap-8">
+            <div class="flex flex-col gap-1 p-2 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl">
+                <h3 class="px-3 py-2 text-xs font-bold uppercase tracking-wider text-slate-400">Navigation</h3>
+                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors group" href="#">
+                    <span class="material-symbols-outlined group-hover:text-primary">dashboard</span>
+                    <span class="text-sm font-medium">Overview</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg transition-colors border border-primary/20" href="#">
+                    <span class="material-symbols-outlined">architecture</span>
+                    <span class="text-sm font-medium">Architecture</span>
+                </a>
+            </div>
+
+            <div class="flex flex-col gap-4">
+                <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100 px-1">Tech Stack</h3>
+                <div class="grid grid-cols-4 gap-2">
+                    <div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center border border-slate-200 dark:border-slate-700" title="Python">
+                        <span class="material-symbols-outlined text-primary">terminal</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="lg:col-span-9 flex flex-col gap-10">
+            <header>
+                <h1 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-slate-100 leading-tight mb-4">
+                    Advanced Django & Kubernetes <span class="text-primary">CI/CD Pipeline</span>
+                </h1>
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
+                    A production-ready, highly scalable architecture designed to automate deployment of enterprise-level Django applications using GKE, Helm, and GitHub Actions.
+                </p>
+                <div class="mt-8 relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800">
+                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIgKA_zCEDLSEUmTkvGig1OzuRMU1t6F0TAW7P9r7jf9xYlKOb10lm8Z90Tk4x6UlZZ05egCwkcEU8Pj0m9VCvgQ75GbDvu0zFVCsgX-31Ugqe3KSecCpvZyhAYVz46Aa2_zXvM9bn8SAOB1a4BFfxZvL8Aqcx5-3YY4wrqkRbB-uuMy6N7m_db0fXE4FIUBr6JMlM94-zuqJfDPzStDIki6OK7NscQBnvvBZlYbYTKVryQWJt5UgqBiY0yMLdldImh2EY2NtQZd5f" alt="Architecture">
+                </div>
+            </header>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4">The Challenge</h2>
+                    <p class="text-slate-600 dark:text-slate-400">Manual scaling and reactive deployments leading to increased costs and downtime.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-primary/5 border border-primary/20">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">The Solution</h2>
+                    <p class="text-slate-600 dark:text-slate-400">Automated zero-downtime rolling updates via Kubernetes orchestrated pipelines.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{% endblock %}

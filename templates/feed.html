@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}DevOps Insights & Engineering Log | Jeff Darick{% endblock %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto w-full px-6 py-12 lg:py-20 mt-10">
+    <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
+        <div class="max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+                <span class="material-symbols-outlined text-xs">rss_feed</span>
+                Engineering Feed
+            </div>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">The <span class="text-primary italic">DevOps</span> Log</h1>
+            <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg mt-4">Deep dives into Kubernetes orchestration, Django performance tuning, and automated infrastructure.</p>
+        </div>
+        <div class="flex gap-2">
+            <button class="p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-500 hover:text-primary transition-all">
+                <span class="material-symbols-outlined">filter_list</span>
+            </button>
+            <div class="relative">
+                <input type="text" placeholder="Search articles..." class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-10 text-sm focus:ring-1 focus:ring-primary focus:border-primary transition-all">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Post 1 -->
+        <article class="group flex flex-col bg-white dark:bg-white/5 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all duration-300">
+            <div class="aspect-video overflow-hidden relative">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV-aOrYyj9TctZ6ft830SPRTUDl_m1uLwlVuzJGEQwbZLxjtUAZwIF8gT2m0gZEVcRA_NjpAw_wDlq0Mz8pdpiJegU8cA25xI7piOVXb0ElvKNSROtR7b3BH5A__MXPx2FqK_01VYTMVuAUpRjYCpjkudSVGCBPvJlp0dZ5zVBYr6KV_-sBf8YRb80jey63iZ0K05_0sg2jrgR3zA5WqvTFgSZfsdjPO8vRUH4rOLOhAumOpksC2LT8dbUrpqrckbMYTXj7yFDW9xG" alt="Blog post" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute top-4 left-4">
+                    <span class="px-3 py-1 bg-primary text-white text-[10px] font-bold rounded-full uppercase tracking-widest shadow-lg">Cloud-Native</span>
+                </div>
+            </div>
+            <div class="p-6 sm:p-8 flex flex-col flex-1">
+                <div class="flex items-center gap-3 text-[10px] font-mono text-slate-500 mb-4 uppercase tracking-[0.2em]">
+                    <time>Oct 24, 2023</time>
+                    <span class="h-1 w-1 bg-slate-700 rounded-full"></span>
+                    <span>12 Min Read</span>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-primary transition-colors leading-tight">Scaling Django with Kubernetes Horizontal Pod Autoscaling</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-8 flex-1">Learn how to architect your Django workloads for dynamic traffic patterns using custom Prometheus metrics.</p>
+                <a href="{% url 'blog_detail' 1 %}" class="flex items-center gap-2 text-primary text-xs font-black uppercase tracking-widest hover:translate-x-1 transition-transform">
+                    Read Operation <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="group flex flex-col bg-white dark:bg-white/5 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all duration-300">
+            <div class="aspect-video overflow-hidden relative">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbxPOxKwph5O516rEGQDwj7PlsD04vJmx0elpweVlGZuo8H6OGi0IKxai_q_pDPY1rzVJ5-FpdAg-Ewf7NY4GOUPDS781YgxwPk7Z_keqpgcHef7ftIcs8N63sy_fa_b1JmW0GjClVl9eJsYVA6LWbDMnC8L81uBm_Ga6qOEW5OgOC9mmUBHE5euX6h8igyLMHUcsfpP71XCQBAjfI_dlcX_bL56LWQdd4zVo1panDE3aAyvbhAtiFYOzfax7Sv_KjKjE5KeJwhouB" alt="Blog post" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute top-4 left-4">
+                    <span class="px-3 py-1 bg-accent text-slate-900 text-[10px] font-bold rounded-full uppercase tracking-widest shadow-lg">Infrastructure</span>
+                </div>
+            </div>
+            <div class="p-6 sm:p-8 flex flex-col flex-1">
+                <div class="flex items-center gap-3 text-[10px] font-mono text-slate-500 mb-4 uppercase tracking-[0.2em]">
+                    <time>Sep 15, 2023</time>
+                    <span class="h-1 w-1 bg-slate-700 rounded-full"></span>
+                    <span>8 Min Read</span>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-primary transition-colors leading-tight">Zero-Downtime Infrastructure with Terraform Cloud</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-8 flex-1">Implementing immutable infrastructure patterns to ensure your production environment stays stable during rollouts.</p>
+                <a href="{% url 'blog_detail' 2 %}" class="flex items-center gap-2 text-primary text-xs font-black uppercase tracking-widest hover:translate-x-1 transition-transform">
+                    Read Operation <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+        </article>
+    </div>
+</section>
+{% endblock %}

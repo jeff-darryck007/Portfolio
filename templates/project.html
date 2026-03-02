@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Projects Portfolio Grid | Jeff Darick{% endblock %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto w-full px-6 py-12 lg:py-20 mt-10">
+    <!-- Hero Section Header -->
+    <div class="mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            Available for new projects
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight mb-6">
+            Projects <span class="text-primary">Portfolio</span>
+        </h1>
+        <p class="text-slate-600 dark:text-slate-400 text-lg max-w-2xl leading-relaxed">
+            A collection of high-performance Full Stack & DevOps solutions. Built with modern microservices architecture, automated CI/CD pipelines, and cloud-native scaling.
+        </p>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="flex flex-wrap gap-3 mb-10">
+        <button class="px-6 py-2.5 rounded-full bg-primary text-white text-sm font-bold shadow-md">All Systems</button>
+        <button class="px-6 py-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-primary/10 hover:text-primary text-sm font-bold border border-transparent transition-all">Full Stack</button>
+        <button class="px-6 py-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-primary/10 hover:text-primary text-sm font-bold border border-transparent transition-all">DevOps</button>
+        <button class="px-6 py-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-primary/10 hover:text-primary text-sm font-bold border border-transparent transition-all">Kubernetes</button>
+        <button class="px-6 py-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-primary/10 hover:text-primary text-sm font-bold border border-transparent transition-all">Open Source</button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for project in projects %}
+        <div class="glass-card flex flex-col rounded-xl overflow-hidden group border border-slate-200 dark:border-slate-800 bg-white/5 backdrop-blur-md">
+            <div class="relative aspect-video overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent z-10"></div>
+                {% if project.image %}
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                {% else %}
+                <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC--xSUQVvqVSOIvzEXbxyNeCmSVd674psc9cF_SpC6Eo8LVCbgtvxSN3sZXdvJ61XQEKEgWPt72NIQDsBdLj9cPlC0XqblLGhqRgJvx-yv_rzvg3o-esiNlQX2EVNvq_EA601LvGybqSezxtcFscZrWN8gmCO7NTvyasoZJ0TKhFCTQ8GRHqFFN9JdZvFSgaAcAtOhRjOrUeQRet7snj5MEY-vi4-IyG7sDLPO3GLqtKb2e4YLSH9JNfhAcbbBbLx5GaIvh_mga4oD');"></div>
+                {% endif %}
+                <div class="absolute top-4 left-4 z-20 flex gap-2">
+                    <span class="px-2 py-1 rounded text-[10px] font-bold bg-accent/20 text-accent border border-accent/30 uppercase">System</span>
+                </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors text-slate-900 dark:text-white">{{ project.title }}</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm mb-6 flex-1">{{ project.description }}</p>
+                <div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-200 dark:border-slate-800">
+                    <a class="flex items-center gap-1 text-primary text-xs font-bold uppercase hover:underline" href="{{ project.github_url|default:'#' }}">
+                        View Code <span class="material-symbols-outlined text-sm">open_in_new</span>
+                    </a>
+                    <div class="flex gap-3">
+                        <span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer transition-colors">monitoring</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <!-- Project Card 1 -->
+        <div class="glass-card flex flex-col rounded-xl overflow-hidden group border border-slate-200 dark:border-slate-800 bg-white/5 backdrop-blur-md">
+            <div class="relative aspect-video overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent z-10"></div>
+                <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC--xSUQVvqVSOIvzEXbxyNeCmSVd674psc9cF_SpC6Eo8LVCbgtvxSN3sZXdvJ61XQEKEgWPt72NIQDsBdLj9cPlC0XqblLGhqRgJvx-yv_rzvg3o-esiNlQX2EVNvq_EA601LvGybqSezxtcFscZrWN8gmCO7NTvyasoZJ0TKhFCTQ8GRHqFFN9JdZvFSgaAcAtOhRjOrUeQRet7snj5MEY-vi4-IyG7sDLPO3GLqtKb2e4YLSH9JNfhAcbbBbLx5GaIvh_mga4oD');"></div>
+            </div>
+            <div class="p-5 sm:p-6 flex flex-col flex-1">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">Quantum Commerce Engine</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm mb-6 flex-1">High-availability e-commerce backend built with Django, Redis, and RabbitMQ. Handles 50k+ requests/sec.</p>
+                <div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-200 dark:border-slate-800">
+                    <a class="flex items-center gap-1 text-primary text-xs font-bold uppercase hover:underline" href="#">
+                        View Case Study <span class="material-symbols-outlined text-sm">open_in_new</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+    .glass-card:hover {
+        transform: translateY(-4px);
+        transition: all 0.3s ease;
+    }
+</style>
+{% endblock %}

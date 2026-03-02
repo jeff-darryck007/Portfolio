@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Contact & Networking | Jeff Darick{% endblock %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 px-6 py-12 lg:py-20 mt-10">
+    <div class="lg:col-span-7 flex flex-col gap-8">
+        <div>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
+                Initialize <span class="text-primary">Connection</span>
+            </h1>
+            <p class="text-slate-600 dark:text-slate-400 text-lg max-w-xl">
+                Looking for a Full Stack Django expert or DevOps engineer to scale your infrastructure? Drop a message below.
+            </p>
+        </div>
+        <form class="flex flex-col gap-6 bg-white dark:bg-slate-900/50 p-6 sm:p-8 rounded-xl border border-slate-200 dark:border-slate-800 backdrop-blur-sm">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <label class="flex flex-col gap-2">
+                    <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Identifier (Name)</span>
+                    <input class="glow-input w-full rounded-lg border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white focus:border-primary focus:ring-0 h-12 px-4 transition-all" placeholder="John Doe" type="text"/>
+                </label>
+                <label class="flex flex-col gap-2">
+                    <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Endpoint (Email)</span>
+                    <input class="glow-input w-full rounded-lg border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white focus:border-primary focus:ring-0 h-12 px-4 transition-all" placeholder="name@company.com" type="email"/>
+                </label>
+            </div>
+            <label class="flex flex-col gap-2">
+                <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Operation (Subject)</span>
+                <input class="glow-input w-full rounded-lg border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white focus:border-primary focus:ring-0 h-12 px-4 transition-all" placeholder="Project Inquiry / Collaboration" type="text"/>
+            </label>
+            <label class="flex flex-col gap-2">
+                <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Payload (Message)</span>
+                <textarea class="glow-input w-full rounded-lg border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white focus:border-primary focus:ring-0 p-4 transition-all resize-none" placeholder="Describe the project scope or requirements..." rows="5"></textarea>
+            </label>
+            <button class="glow-button w-full md:w-max px-8 py-4 bg-primary text-white font-bold rounded-lg flex items-center justify-center gap-2 hover:translate-y-[-2px] transition-all" type="submit">
+                <span>Execute Send</span>
+                <span class="material-symbols-outlined text-sm">send</span>
+            </button>
+        </form>
+    </div>
+    <aside class="lg:col-span-5 flex flex-col gap-8">
+        <div class="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-2xl">
+            <div class="bg-slate-800 px-4 py-2 flex items-center justify-between">
+                <div class="flex gap-2">
+                    <div class="size-3 rounded-full bg-red-500/80"></div>
+                    <div class="size-3 rounded-full bg-yellow-500/80"></div>
+                    <div class="size-3 rounded-full bg-green-500/80"></div>
+                </div>
+                <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">contact_info.json</span>
+                <div class="w-12"></div>
+            </div>
+            <div class="p-6 font-mono text-sm leading-relaxed overflow-x-auto">
+                <pre class="text-primary"><span class="text-slate-400">{</span>
+  <span class="text-cyan-400">"status"</span>: <span class="text-green-400">"available"</span>,
+  <span class="text-cyan-400">"specialization"</span>: <span class="text-green-400">["Django", "Kubernetes", "CI/CD"]</span>,
+  <span class="text-cyan-400">"location"</span>: <span class="text-green-400">"San Francisco, CA"</span>,
+  <span class="text-cyan-400">"socials"</span>: <span class="text-slate-400">{</span>
+    <span class="text-cyan-400">"github"</span>: <span class="text-green-400">"github.com/devops-stack"</span>,
+    <span class="text-cyan-400">"linkedin"</span>: <span class="text-green-400">"linkedin.com/in/devops"</span>
+  <span class="text-slate-400">}</span>,
+  <span class="text-cyan-400">"availability"</span>: <span class="text-green-400">"20h/week"</span>
+<span class="text-slate-400">}</span></pre>
+            </div>
+        </div>
+        <div class="flex flex-col gap-4">
+            <h3 class="text-sm font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-2">Network Nodes</h3>
+            <a class="group flex items-center gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/30 hover:border-primary/50 transition-all" href="#">
+                <div class="size-12 rounded-lg bg-slate-900 flex items-center justify-center text-white group-hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-2xl">terminal</span>
+                </div>
+                <div class="flex-1">
+                    <p class="text-sm font-bold text-slate-900 dark:text-white">GitHub</p>
+                    <p class="text-xs text-slate-500">View source code and repos</p>
+                </div>
+                <span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-sm">arrow_outward</span>
+            </a>
+            <a class="group flex items-center gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/30 hover:border-primary/50 transition-all" href="#">
+                <div class="size-12 rounded-lg bg-slate-900 flex items-center justify-center text-white group-hover:text-primary transition-colors text-sm font-bold">in</div>
+                <div class="flex-1">
+                    <p class="text-sm font-bold text-slate-900 dark:text-white">LinkedIn</p>
+                    <p class="text-xs text-slate-500">Professional networking</p>
+                </div>
+                <span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-sm">arrow_outward</span>
+            </a>
+        </div>
+    </aside>
+</section>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+    .glow-input:focus {
+        box-shadow: 0 0 15px rgba(60, 131, 246, 0.3);
+    }
+    .glow-button {
+        box-shadow: 0 0 20px rgba(60, 131, 246, 0.4);
+    }
+</style>
+{% endblock %}

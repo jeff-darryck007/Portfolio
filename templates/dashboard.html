@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Developer Stats Dashboard | Jeff Darick{% endblock %}
+
+{% block content %}
+<section class="max-w-[1600px] mx-auto w-full px-6 py-12 lg:px-10 mt-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+            <h1 class="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">Systems Overview</h1>
+            <p class="text-slate-500 dark:text-slate-400 mt-1 font-medium font-mono text-sm uppercase tracking-widest">Django Backend & Distributed DevOps Infrastructure</p>
+        </div>
+        <div class="flex gap-3">
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-500 text-xs font-bold border border-emerald-500/20">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                ALL SYSTEMS OPERATIONAL
+            </div>
+            <button class="bg-white/5 backdrop-blur-md p-2 rounded-lg text-slate-400 hover:text-primary transition-colors border border-slate-200 dark:border-slate-800">
+                <span class="material-symbols-outlined">refresh</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white/5 backdrop-blur-md p-6 rounded-2xl border-l-4 border-l-primary border border-slate-200 dark:border-slate-800">
+            <div class="flex justify-between items-start mb-2">
+                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">GitHub Commits</p>
+                <span class="material-symbols-outlined text-primary">commit</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+                <p class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">1,284</p>
+                <p class="text-emerald-500 text-xs font-bold">+12.4%</p>
+            </div>
+        </div>
+        <div class="bg-white/5 backdrop-blur-md p-6 rounded-2xl border-l-4 border-l-accent border border-slate-200 dark:border-slate-800">
+            <div class="flex justify-between items-start mb-2">
+                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Active Pipelines</p>
+                <span class="material-symbols-outlined text-accent">account_tree</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+                <p class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">12</p>
+                <p class="text-slate-500 text-xs font-bold">Stable</p>
+            </div>
+        </div>
+        <div class="bg-white/5 backdrop-blur-md p-6 rounded-2xl border-l-4 border-l-purple-500 border border-slate-200 dark:border-slate-800">
+            <div class="flex justify-between items-start mb-2">
+                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Cloud Uptime</p>
+                <span class="material-symbols-outlined text-purple-500">cloud_done</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+                <p class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">99.98%</p>
+                <p class="text-rose-500 text-xs font-bold">-0.01%</p>
+            </div>
+        </div>
+        <div class="bg-white/5 backdrop-blur-md p-6 rounded-2xl border-l-4 border-l-amber-500 border border-slate-200 dark:border-slate-800">
+            <div class="flex justify-between items-start mb-2">
+                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Open PRs</p>
+                <span class="material-symbols-outlined text-amber-500">merge</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+                <p class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">8</p>
+                <p class="text-emerald-500 text-xs font-bold">+2</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts and Tables -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div class="lg:col-span-2 bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <div class="flex justify-between items-center mb-10">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">calendar_month</span>
+                    GitHub Activity Heatmap
+                </h3>
+            </div>
+            <!-- Heatmap Placeholder -->
+            <div class="grid grid-cols-[repeat(30,1fr)] gap-1">
+                {% for i in "123456789012345678901234567890123456789012345678901234567890" %}
+                <div class="aspect-square rounded-sm bg-primary/{{ 10|random }}0 opacity-{{ 10|random }}0"></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-6">Resource Allocation</h3>
+            <div class="flex-1 flex items-center justify-center">
+                <div class="w-32 h-32 rounded-full border-8 border-slate-100 dark:border-slate-800 border-t-primary border-r-accent flex items-center justify-center">
+                    <div class="text-center">
+                        <span class="text-2xl font-bold text-slate-900 dark:text-white">74%</span>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase mt-1 tracking-widest">LOAD</p>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-3 mt-8">
+                <div class="flex justify-between items-center text-xs font-mono uppercase tracking-widest">
+                    <span class="text-slate-500">AWS Lambda</span>
+                    <span class="text-primary font-bold">42%</span>
+                </div>
+                <div class="flex justify-between items-center text-xs font-mono uppercase tracking-widest">
+                    <span class="text-slate-500">RDS Postgres</span>
+                    <span class="text-accent font-bold">32%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

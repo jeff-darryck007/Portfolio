@@ -1,40 +1,74 @@
 {% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Portfolio{% endblock %}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    {% block extra_css %}{% endblock %}
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="container">
-        <a href="{% url 'home' %}" class="logo">Portfolio<span>.</span></a>
-        <ul class="nav-links">
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{% block title %}Jeff Darick - Portfolio{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3d84f5",
+                        "accent": "#22d3ee",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f172a",
+                        "surface": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                        "outfit": ["Outfit", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased;
+            }
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(61, 132, 245, 0.4);
+        }
+        .gradient-border {
+            border: 1px solid transparent;
+            background: linear-gradient(to right, #0f172a, #0f172a) padding-box,
+                        linear-gradient(to right, #3d84f5, #22d3ee) border-box;
+        }
+        .mono-tag {
+            @apply font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border border-slate-700 bg-slate-800/50 rounded;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="selection:bg-primary/30">
+    <div class="relative min-h-screen flex flex-col overflow-x-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden">
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/30 rounded-full blur-[120px]"></div>
+            <div class="absolute top-1/2 -right-24 w-80 h-80 bg-accent/20 rounded-full blur-[100px]"></div>
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        </div>
 
-    <main>{% block content %}{% endblock %}</main>
+        {% include "partials/_navbar.html" %}
 
-    <footer>
-      <div class="container">
-        <p>&copy; 2026 Developer Portfolio. Built with Django.</p>
-      </div>
-    </footer>
+        <main class="relative z-10 flex-1">
+            {% block content %}{% endblock %}
+        </main>
+
+        {% include "partials/_footer.html" %}
+    </div>
 
     {% block extra_js %}{% endblock %}
-  </body>
+</body>
 </html>
