@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | Portfolio{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="fade-in">Crafting Digital <span class="highlight">Experiences</span></h1>
+            <p class="fade-in delay-1">Full-stack developer specialized in building modern, scalable, and beautiful web applications.</p>
+            <div class="hero-btns fade-in delay-2">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-bg"></div>
+</section>
+
+<section id="projects" class="projects-section">
+    <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            {% for project in projects %}
+            <div class="project-card fade-in">
+                <div class="project-img">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                </div>
+                <div class="project-info">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description|truncatewords:20 }}</p>
+                    <div class="tech-tags">
+                        {% for tag in project.tech_list %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="project-links">
+                        <a href="{{ project.live_url }}" class="link-btn">Demo</a>
+                        <a href="{{ project.github_url }}" class="link-btn secondary">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="project-placeholder">
+                <p>Projects coming soon...</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="skills-section">
+    <div class="container">
+        <h2 class="section-title">Tech Stack</h2>
+        <div class="skills-grid">
+            {% for skill in skills %}
+            <div class="skill-item fade-in">
+                <div class="skill-info">
+                    <span>{{ skill.name }}</span>
+                    <span>{{ skill.proficiency }}%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: {{ skill.proficiency }}%;"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
