@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Experiences</h1>
+<table class="min-w-full bg-white dark:bg-gray-800">
+<thead><tr><th class="px-4 py-2">Company</th><th class="px-4 py-2">Position</th></tr></thead>
+<tbody>
+{% for experience in object_list %}
+<tr class="border-t">
+<td class="px-4 py-2">{{ experience.company }}</td>
+<td class="px-4 py-2">{{ experience.position }}</td>
+</tr>
+{% empty %}
+<tr><td colspan="2" class="px-4 py-2">No experiences.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

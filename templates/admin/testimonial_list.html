@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Testimonials</h1>
+<table class="min-w-full bg-white dark:bg-gray-800">
+<thead><tr><th class="px-4 py-2">Name</th><th class="px-4 py-2">Position</th></tr></thead>
+<tbody>
+{% for testimonial in object_list %}
+<tr class="border-t">
+<td class="px-4 py-2">{{ testimonial.name }}</td>
+<td class="px-4 py-2">{{ testimonial.position }}</td>
+</tr>
+{% empty %}
+<tr><td colspan="2" class="px-4 py-2">No testimonials.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

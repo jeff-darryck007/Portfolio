@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Contact Messages</h1>
+<table class="min-w-full bg-white dark:bg-gray-800">
+<thead><tr><th class="px-4 py-2">Name</th><th class="px-4 py-2">Subject</th><th class="px-4 py-2">Read</th></tr></thead>
+<tbody>
+{% for message in object_list %}
+<tr class="border-t">
+<td class="px-4 py-2">{{ message.name }}</td>
+<td class="px-4 py-2">{{ message.subject }}</td>
+<td class="px-4 py-2">{{ message.is_read|yesno:"Yes,No" }}</td>
+</tr>
+{% empty %}
+<tr><td colspan="3" class="px-4 py-2">No messages.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
