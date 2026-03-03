@@ -1,17 +1,88 @@
-{% extends "base.html" %}
-{% block content %}
-<h1 class="text-2xl font-bold mb-4">Projects</h1>
-<table class="min-w-full bg-white dark:bg-gray-800">
-<thead><tr><th class="px-4 py-2">Title</th><th class="px-4 py-2">Category</th></tr></thead>
-<tbody>
-{% for project in object_list %}
-<tr class="border-t">
-<td class="px-4 py-2">{{ project.title }}</td>
-<td class="px-4 py-2">{{ project.category.name }}</td>
-</tr>
-{% empty %}
-<tr><td colspan="2" class="px-4 py-2">No projects.</td></tr>
-{% endfor %}
-</tbody>
-</table>
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Projets | Admin{% endblock %}
+
+{% block breadcrumb %}Projets{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'admin_project_create' %}" class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg font-bold text-sm transition-all neon-shadow-blue">
+    <span class="material-symbols-outlined text-sm">add</span>
+    <span>Nouveau Projet</span>
+</a>
+{% endblock %}
+
+{% block admin_content %}
+<div class="glass rounded-2xl overflow-hidden">
+    <div class="p-6 border-b border-white/5 bg-white/[0.02] flex justify-between items-center">
+        <h3 class="font-bold text-white flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary">work</span>
+            Liste des Projets
+        </h3>
+        <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">{{ projects.count }} Projets</span>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="border-b border-white/5 text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">
+                    <th class="px-6 py-4">Projet</th>
+                    <th class="px-6 py-4">Catégorie</th>
+                    <th class="px-6 py-4">Statut</th>
+                    <th class="px-6 py-4 text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+                {% for project in projects %}
+                <tr class="hover:bg-white/[0.02] transition-colors group">
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            {% if project.image %}
+                            <div class="size-10 rounded-lg bg-cover bg-center border border-white/10" style="background-image: url('{{ project.image.url }}')"></div>
+                            {% else %}
+                            <div class="size-10 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">
+                                <span class="material-symbols-outlined text-slate-500 text-xl">image</span>
+                            </div>
+                            {% endif %}
+                            <div>
+                                <p class="text-sm font-bold text-white group-hover:text-primary transition-colors">{{ project.title }}</p>
+                                <p class="text-[10px] text-slate-500 font-medium">{{ project.created|date:"d M Y" }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold text-slate-400">
+                            {{ project.category.name }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        {% if project.featured %}
+                        <span class="flex items-center gap-1.5 text-emerald-500 text-[10px] font-bold uppercase tracking-wider">
+                            <span class="size-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                            Mis en avant
+                        </span>
+                        {% else %}
+                        <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider">Standard</span>
+                        {% endif %}
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <a href="{% url 'admin_project_update' project.pk %}" class="p-2 rounded-lg bg-white/5 text-slate-400 hover:text-white hover:bg-primary/20 transition-all" title="Modifier">
+                                <span class="material-symbols-outlined text-lg">edit</span>
+                            </a>
+                            <a href="{% url 'admin_project_delete' project.pk %}" class="p-2 rounded-lg bg-white/5 text-slate-400 hover:text-rose-500 hover:bg-rose-500/20 transition-all" title="Supprimer">
+                                <span class="material-symbols-outlined text-lg">delete</span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="px-6 py-12 text-center text-slate-500 italic">
+                        Aucun projet trouvé. Cliquez sur "Nouveau Projet" pour commencer.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

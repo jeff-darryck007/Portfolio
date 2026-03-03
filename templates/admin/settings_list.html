@@ -1,0 +1,68 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Paramètres | Admin{% endblock %}
+
+{% block breadcrumb %}Configuration{% endblock %}
+
+{% block admin_content %}
+<div class="glass rounded-2xl overflow-hidden max-w-5xl">
+    <div class="p-6 border-b border-white/5 bg-white/[0.02] flex justify-between items-center">
+        <h3 class="font-bold text-white flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary">settings</span>
+            Options du Système
+        </h3>
+    </div>
+    <div class="p-6 space-y-8">
+        {% for setting in settings %}
+        <div class="glass p-6 rounded-2xl border border-white/5 hover:bg-white/[0.03] transition-all relative group">
+            <a href="{% url 'admin_setting_update' setting.pk %}" class="absolute top-6 right-6 p-2 rounded-lg bg-white/5 text-slate-400 hover:text-white hover:bg-primary/20 transition-all opacity-0 group-hover:opacity-100">
+                <span class="material-symbols-outlined text-lg">edit</span>
+            </a>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-4">Informations Générales</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Nom de l'entreprise</p>
+                            <p class="text-sm font-bold text-white">{{ setting.name }}</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Email de contact</p>
+                            <p class="text-sm font-bold text-white">{{ setting.email }}</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Téléphone</p>
+                            <p class="text-sm font-bold text-white">{{ setting.phone }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-4">Réseaux Sociaux</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">LinkedIn</p>
+                            <p class="text-sm font-mono text-primary truncate">{{ setting.linkedin_url|default:"Non configuré" }}</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">GitHub</p>
+                            <p class="text-sm font-mono text-primary truncate">{{ setting.github_url|default:"Non configuré" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-white/5">
+                <h4 class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-4">Description Courte</h4>
+                <p class="text-sm text-slate-400 leading-relaxed">{{ setting.description }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <div class="text-center py-12 text-slate-500 italic">
+            Aucun paramètre configuré.
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

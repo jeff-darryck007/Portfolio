@@ -1,0 +1,83 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}{% if object %}Modifier{% else %}Créer{% endif %} {{ model_name }} | Admin{% endblock %}
+
+{% block breadcrumb %}
+<a href="{% url list_url_name %}" class="hover:text-white transition-colors">{{ model_name_plural }}</a>
+<span class="material-symbols-outlined text-sm mx-1">chevron_right</span>
+<span>{% if object %}Modifier{% else %}Nouveau{% endif %}</span>
+{% endblock %}
+
+{% block admin_content %}
+<div class="max-w-4xl mx-auto">
+    <div class="glass p-8 lg:p-12 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
+        <!-- Background Glow -->
+        <div class="absolute -top-24 -right-24 size-48 bg-primary/20 rounded-full blur-3xl opacity-50"></div>
+        <div class="absolute -bottom-24 -left-24 size-48 bg-accent-cyan/20 rounded-full blur-3xl opacity-50"></div>
+
+        <div class="relative z-10">
+            <div class="flex items-center justify-between mb-10">
+                <div>
+                    <h2 class="text-3xl font-black text-white tracking-tight uppercase">
+                        {% if object %}Mise à jour{% else %}Création{% endif %}
+                    </h2>
+                    <p class="text-slate-500 font-bold text-xs uppercase tracking-widest mt-1">
+                        {{ model_name }}
+                    </p>
+                </div>
+                <div class="size-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary border border-primary/20">
+                    <span class="material-symbols-outlined text-3xl">{% if object %}edit_document{% else %}add_circle{% endif %}</span>
+                </div>
+            </div>
+
+            <form method="post" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+                
+                <div class="grid grid-cols-1 gap-6">
+                    {% for field in form %}
+                    <div class="space-y-2">
+                        <label for="{{ field.id_for_label }}" class="block text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">
+                            {{ field.label }}
+                        </label>
+                        <div class="relative group">
+                            {{ field }}
+                            {% if field.errors %}
+                            <p class="text-rose-500 text-[10px] font-bold mt-1.5 ml-1 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">error</span>
+                                {{ field.errors.0 }}
+                            </p>
+                            {% endif %}
+                        </div>
+                        {% if field.help_text %}
+                        <p class="text-[10px] text-slate-600 font-medium ml-1 italic">{{ field.help_text }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="pt-10 flex flex-col sm:flex-row items-center justify-end gap-4 border-t border-white/5 mt-10">
+                    <a href="{% url list_url_name %}" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-white/5 text-slate-400 font-bold hover:bg-white/10 hover:text-white transition-all border border-white/10 uppercase tracking-widest text-xs text-center">
+                        Annuler
+                    </a>
+                    <button type="submit" class="w-full sm:w-auto px-10 py-3 rounded-xl bg-primary text-white font-black hover:bg-primary/90 transition-all shadow-[0_0_30px_rgba(61,132,245,0.3)] uppercase tracking-widest text-xs flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-sm">save</span>
+                        {% if object %}Sauvegarder les modifications{% else %}Confirmer la création{% endif %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style type="text/tailwindcss">
+    /* Styling for Django Form Widgets */
+    @layer components {
+        input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="number"], select, textarea {
+            @apply w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:bg-white/[0.08] focus:border-primary/50 focus:ring-0 transition-all placeholder:text-slate-600;
+        }
+        input[type="checkbox"] {
+            @apply size-5 bg-white/5 border border-white/10 rounded-md text-primary focus:ring-0 transition-all checked:bg-primary;
+        }
+    }
+</style>
+{% endblock %}

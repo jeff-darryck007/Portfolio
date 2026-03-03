@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{% block title %}Admin Dashboard | Jeff Darick{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3d84f5",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0a0f18",
+                        "accent-cyan": "#00f2ff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-shadow-blue {
+            box-shadow: 0 0 15px rgba(61, 132, 245, 0.3);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+    <div class="flex min-h-screen w-full">
+        <!-- Sidebar -->
+        <aside class="hidden lg:flex w-72 flex-col fixed inset-y-0 z-50 glass border-r border-slate-200 dark:border-slate-800">
+            <div class="flex flex-col h-full">
+                <!-- Sidebar Header -->
+                <div class="p-6 flex items-center gap-3 text-primary border-b border-white/5">
+                    <div class="size-10 bg-primary/20 rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-2xl">terminal</span>
+                    </div>
+                    <div>
+                        <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-none tracking-tight">Admin Dash</h2>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Management Suite</p>
+                    </div>
+                </div>
+
+                <!-- Sidebar Navigation -->
+                <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-8 scrollbar-hide">
+                    <!-- Main Category -->
+                    <div>
+                        <h3 class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Core</h3>
+                        <div class="space-y-1">
+                            <a href="{% url 'dashboard' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'dashboard' %}bg-primary text-white font-bold transition-all neon-shadow-blue{% else %}text-slate-400 hover:text-white hover:bg-white/5 transition-all group{% endif %}">
+                                <span class="material-symbols-outlined text-xl">grid_view</span>
+                                <span>Aperçu global</span>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all group">
+                                <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">analytics</span>
+                                <span>Statistiques</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Category -->
+                    <div>
+                        <h3 class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Portfolio</h3>
+                        <div class="space-y-1">
+                            <a href="{% url 'admin_projects' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'admin_projects' %}bg-primary text-white font-bold transition-all neon-shadow-blue{% else %}text-slate-400 hover:text-white hover:bg-white/5 transition-all group{% endif %}">
+                                <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">work</span>
+                                <span>Projets</span>
+                            </a>
+                            <a href="{% url 'admin_experiences' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'admin_experiences' %}bg-primary text-white font-bold transition-all neon-shadow-blue{% else %}text-slate-400 hover:text-white hover:bg-white/5 transition-all group{% endif %}">
+                                <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">history_edu</span>
+                                <span>Expériences</span>
+                            </a>
+                            <a href="{% url 'admin_skills' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'admin_skills' %}bg-primary text-white font-bold transition-all neon-shadow-blue{% else %}text-slate-400 hover:text-white hover:bg-white/5 transition-all group{% endif %}">
+                                <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">psychology</span>
+                                <span>Compétences</span>
+                            </a>
+                            <a href="{% url 'admin_categories' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'admin_categories' %}bg-primary text-white font-bold transition-all neon-shadow-blue{% else %}text-slate-400 hover:text-white hover:bg-white/5 transition-all group{% endif %}">
+                                <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">category</span>
+                                <span>Catégories</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Content Category -->
+                    <div>
+                        <h3 class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Communication</h3>
+                        <div class="space-y-1">
+                            <a href="{% url 'admin_posts' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'admin_posts' %}bg-primary text-white font-bold transition-all neon-shadow-blue{% else %}text-slate-400 hover:text-white hover:bg-white/5 transition-all group{% endif %}">
+                                <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">article</span>
+                                <span>Blog Posts</span>
+                            </a>
+                            <a href="{% url 'admin_testimonials' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'admin_testimonials' %}bg-primary text-white font-bold transition-all neon-shadow-blue{% else %}text-slate-400 hover:text-white hover:bg-white/5 transition-all group{% endif %}">
+                                <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">forum</span>
+                                <span>Témoignages</span>
+                            </a>
+                            <a href="{% url 'admin_contact_messages' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'admin_contact_messages' %}bg-primary text-white font-bold transition-all neon-shadow-blue{% else %}text-slate-400 hover:text-white hover:bg-white/5 transition-all group{% endif %}">
+                                <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">mail</span>
+                                <span>Messages</span>
+                                <span class="ml-auto bg-primary/20 text-primary text-[10px] px-1.5 py-0.5 rounded-md">8</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Settings Category -->
+                    <div>
+                        <h3 class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Système</h3>
+                        <div class="space-y-1">
+                            <a href="{% url 'admin_settings' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl {% if request.resolver_match.url_name == 'admin_settings' %}bg-primary text-white font-bold transition-all neon-shadow-blue{% else %}text-slate-400 hover:text-white hover:bg-white/5 transition-all group{% endif %}">
+                                <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">settings</span>
+                                <span>Configuration</span>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Sidebar Footer -->
+                <div class="p-4 mt-auto border-t border-white/5">
+                    <div class="glass rounded-2xl p-4 flex items-center gap-3">
+                        <div class="size-10 rounded-xl bg-center bg-cover border border-primary/20" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCbxPOxKwph5O516rEGQDwj7PlsD04vJmx0elpweVlGZuo8H6OGi0IKxai_q_pDPY1rzVJ5-FpdAg-Ewf7NY4GOUPDS781YgxwPk7Z_keqpgcHef7ftIcs8N63sy_fa_b1JmW0GjClVl9eJsYVA6LWbDMnC8L81uBm_Ga6qOEW5OgOC9mmUBHE5euX6h8igyLMHUcsfpP71XCQBAjfI_dlcX_bL56LWQdd4zVo1panDE3aAyvbhAtiFYOzfax7Sv_KjKjE5KeJwhouB");'></div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-bold text-white truncate">Jeff Darick</p>
+                            <p class="text-[10px] text-slate-500 truncate">Administrateur</p>
+                        </div>
+                        <a href="{% url 'logout' %}" class="text-slate-500 hover:text-rose-500 transition-colors">
+                            <span class="material-symbols-outlined text-xl">logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 lg:ml-72 flex flex-col min-h-screen">
+            <header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 px-6 lg:px-10 py-4 glass sticky top-0 z-40">
+                <div class="flex items-center gap-4">
+                    <!-- Mobile Menu Button -->
+                    <button class="lg:hidden p-2 rounded-lg glass text-slate-400">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                    <div class="hidden lg:flex items-center gap-2 text-slate-400 text-sm font-medium">
+                        <span>Admin</span>
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        <span class="text-white">{% block breadcrumb %}Dashboard{% endblock %}</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 flex-1 justify-end">
+                    <!-- Search or other header content -->
+                    {% block header_actions %}{% endblock %}
+                    
+                    <div class="flex items-center gap-2">
+                        <button class="glass p-2 rounded-lg text-slate-400 hover:text-white transition-colors relative">
+                            <span class="material-symbols-outlined">notifications</span>
+                            <span class="absolute top-1.5 right-1.5 size-2 bg-primary rounded-full ring-2 ring-background-dark"></span>
+                        </button>
+                        <a href="/" class="flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white px-4 py-2 rounded-lg font-bold text-sm transition-all border border-white/10">
+                            <span class="material-symbols-outlined text-sm">visibility</span>
+                            <span class="hidden sm:inline">Voir Site</span>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 p-6 lg:p-10 w-full max-w-[1400px]">
+                {% if messages %}
+                    <div class="mb-6 space-y-2">
+                        {% for message in messages %}
+                            <div class="p-4 rounded-xl {% if message.tags == 'success' %}bg-emerald-500/10 text-emerald-500 border border-emerald-500/20{% else %}bg-rose-500/10 text-rose-500 border border-rose-500/20{% endif %} flex items-center gap-3">
+                                <span class="material-symbols-outlined">{% if message.tags == 'success' %}check_circle{% else %}error{% endif %}</span>
+                                <span class="font-medium text-sm">{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% block admin_content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

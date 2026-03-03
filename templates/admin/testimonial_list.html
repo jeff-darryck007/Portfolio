@@ -1,17 +1,75 @@
-{% extends "base.html" %}
-{% block content %}
-<h1 class="text-2xl font-bold mb-4">Testimonials</h1>
-<table class="min-w-full bg-white dark:bg-gray-800">
-<thead><tr><th class="px-4 py-2">Name</th><th class="px-4 py-2">Position</th></tr></thead>
-<tbody>
-{% for testimonial in object_list %}
-<tr class="border-t">
-<td class="px-4 py-2">{{ testimonial.name }}</td>
-<td class="px-4 py-2">{{ testimonial.position }}</td>
-</tr>
-{% empty %}
-<tr><td colspan="2" class="px-4 py-2">No testimonials.</td></tr>
-{% endfor %}
-</tbody>
-</table>
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Témoignages | Admin{% endblock %}
+
+{% block breadcrumb %}Témoignages{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'admin_testimonial_create' %}" class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg font-bold text-sm transition-all neon-shadow-blue">
+    <span class="material-symbols-outlined text-sm">add</span>
+    <span>Nouveau Témoignage</span>
+</a>
+{% endblock %}
+
+{% block admin_content %}
+<div class="glass rounded-2xl overflow-hidden">
+    <div class="p-6 border-b border-white/5 bg-white/[0.02] flex justify-between items-center">
+        <h3 class="font-bold text-white flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary">forum</span>
+            Retours Clients & Partenaires
+        </h3>
+        <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">{{ testimonials.count }} Témoignages</span>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="border-b border-white/5 text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">
+                    <th class="px-6 py-4">Nom & Poste</th>
+                    <th class="px-6 py-4">Message</th>
+                    <th class="px-6 py-4 text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+                {% for t in testimonials %}
+                <tr class="hover:bg-white/[0.02] transition-colors group">
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            {% if t.image %}
+                            <div class="size-10 rounded-full bg-cover bg-center border border-white/10" style="background-image: url('{{ t.image.url }}')"></div>
+                            {% else %}
+                            <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center border border-white/10 text-primary font-bold text-xs">
+                                {{ t.name|slice:":1" }}
+                            </div>
+                            {% endif %}
+                            <div>
+                                <p class="text-sm font-bold text-white group-hover:text-primary transition-colors">{{ t.name }}</p>
+                                <p class="text-[10px] text-slate-500 font-medium">{{ t.position }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <p class="text-xs text-slate-400 line-clamp-2 max-w-md">{{ t.content }}</p>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <a href="{% url 'admin_testimonial_update' t.pk %}" class="p-2 rounded-lg bg-white/5 text-slate-400 hover:text-white hover:bg-primary/20 transition-all">
+                                <span class="material-symbols-outlined text-lg">edit</span>
+                            </a>
+                            <a href="{% url 'admin_testimonial_delete' t.pk %}" class="p-2 rounded-lg bg-white/5 text-slate-400 hover:text-rose-500 hover:bg-rose-500/20 transition-all">
+                                <span class="material-symbols-outlined text-lg">delete</span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="px-6 py-12 text-center text-slate-500 italic">
+                        Aucun témoignage trouvé.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

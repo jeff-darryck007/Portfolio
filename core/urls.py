@@ -14,14 +14,41 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
 
     # Admin CRUD URLs
-    path('admin/projects/', views.AdminProjectListView.as_view(), name='admin_projects'),
-    path('admin/experiences/', views.AdminExperienceListView.as_view(), name='admin_experiences'),
-    path('admin/skills/', views.AdminSkillListView.as_view(), name='admin_skills'),
-    path('admin/categories/', views.AdminCategoryListView.as_view(), name='admin_categories'),
-    path('admin/posts/', views.AdminPostListView.as_view(), name='admin_posts'),
-    path('admin/testimonials/', views.AdminTestimonialListView.as_view(), name='admin_testimonials'),
-    path('admin/contact-messages/', views.AdminContactMessageListView.as_view(), name='admin_contact_messages'),
-    path('admin/settings/', views.AdminCompanySettingListView.as_view(), name='admin_settings'),
+    path('manage/projects/', views.AdminProjectListView.as_view(), name='admin_projects'),
+    path('manage/projects/create/', views.AdminProjectCreateView.as_view(), name='admin_project_create'),
+    path('manage/projects/<int:pk>/update/', views.AdminProjectUpdateView.as_view(), name='admin_project_update'),
+    path('manage/projects/<int:pk>/delete/', views.AdminProjectDeleteView.as_view(), name='admin_project_delete'),
+
+    path('manage/experiences/', views.AdminExperienceListView.as_view(), name='admin_experiences'),
+    path('manage/experiences/create/', views.AdminExperienceCreateView.as_view(), name='admin_experience_create'),
+    path('manage/experiences/<int:pk>/update/', views.AdminExperienceUpdateView.as_view(), name='admin_experience_update'),
+    path('manage/experiences/<int:pk>/delete/', views.AdminExperienceDeleteView.as_view(), name='admin_experience_delete'),
+
+    path('manage/skills/', views.AdminSkillListView.as_view(), name='admin_skills'),
+    path('manage/skills/create/', views.AdminSkillCreateView.as_view(), name='admin_skill_create'),
+    path('manage/skills/<int:pk>/update/', views.AdminSkillUpdateView.as_view(), name='admin_skill_update'),
+    path('manage/skills/<int:pk>/delete/', views.AdminSkillDeleteView.as_view(), name='admin_skill_delete'),
+
+    path('manage/categories/', views.AdminCategoryListView.as_view(), name='admin_categories'),
+    path('manage/categories/create/', views.AdminCategoryCreateView.as_view(), name='admin_category_create'),
+    path('manage/categories/<int:pk>/update/', views.AdminCategoryUpdateView.as_view(), name='admin_category_update'),
+    path('manage/categories/<int:pk>/delete/', views.AdminCategoryDeleteView.as_view(), name='admin_category_delete'),
+
+    path('manage/posts/', views.AdminPostListView.as_view(), name='admin_posts'),
+    path('manage/posts/create/', views.AdminPostCreateView.as_view(), name='admin_post_create'),
+    path('manage/posts/<int:pk>/update/', views.AdminPostUpdateView.as_view(), name='admin_post_update'),
+    path('manage/posts/<int:pk>/delete/', views.AdminPostDeleteView.as_view(), name='admin_post_delete'),
+
+    path('manage/testimonials/', views.AdminTestimonialListView.as_view(), name='admin_testimonials'),
+    path('manage/testimonials/create/', views.AdminTestimonialCreateView.as_view(), name='admin_testimonial_create'),
+    path('manage/testimonials/<int:pk>/update/', views.AdminTestimonialUpdateView.as_view(), name='admin_testimonial_update'),
+    path('manage/testimonials/<int:pk>/delete/', views.AdminTestimonialDeleteView.as_view(), name='admin_testimonial_delete'),
+
+    path('manage/contact-messages/', views.AdminContactMessageListView.as_view(), name='admin_contact_messages'),
+    path('manage/contact-messages/<int:pk>/delete/', views.AdminContactMessageDeleteView.as_view(), name='admin_contact_message_delete'),
+
+    path('manage/settings/', views.AdminCompanySettingListView.as_view(), name='admin_settings'),
+    path('manage/settings/<int:pk>/update/', views.AdminCompanySettingUpdateView.as_view(), name='admin_setting_update'),
 
     # Secret Login
     path('jeff-admin-login/', auth_views.LoginView.as_view(template_name='core/login.html'), name='login'),
