@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from .models import Project, Skill
 
+
 def home(request):
-    projects = Project.objects.filter(featured=True).order_by('-created_at')[:3]
+    projects = Project.objects.filter(featured=True).order_by('-created')[:3]
     skills = Skill.objects.all().order_by('-proficiency')
     return render(request, 'core/index.html', {
         'projects': projects,
@@ -30,5 +32,6 @@ def project_list(request):
 def cv(request):
     return render(request, 'cv.html')
 
+@login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
