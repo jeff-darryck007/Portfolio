@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Project, Skill
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Project, Skill, Experience, Category, Testimonial, CompanySetting, Post, ContactMessage
 
 
 def home(request):
@@ -35,3 +38,44 @@ def cv(request):
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+# Admin CRUD Views
+class AdminProjectListView(LoginRequiredMixin, ListView):
+    model = Project
+    template_name = 'admin/project_list.html'
+    context_object_name = 'projects'
+
+class AdminExperienceListView(LoginRequiredMixin, ListView):
+    model = Experience
+    template_name = 'admin/experience_list.html'
+    context_object_name = 'experiences'
+
+class AdminSkillListView(LoginRequiredMixin, ListView):
+    model = Skill
+    template_name = 'admin/skill_list.html'
+    context_object_name = 'skills'
+
+class AdminCategoryListView(LoginRequiredMixin, ListView):
+    model = Category
+    template_name = 'admin/category_list.html'
+    context_object_name = 'categories'
+
+class AdminPostListView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'admin/post_list.html'
+    context_object_name = 'posts'
+
+class AdminTestimonialListView(LoginRequiredMixin, ListView):
+    model = Testimonial
+    template_name = 'admin/testimonial_list.html'
+    context_object_name = 'testimonials'
+
+class AdminContactMessageListView(LoginRequiredMixin, ListView):
+    model = ContactMessage
+    template_name = 'admin/contact_list.html'
+    context_object_name = 'messages'
+
+class AdminCompanySettingListView(LoginRequiredMixin, ListView):
+    model = CompanySetting
+    template_name = 'admin/settings_list.html'
+    context_object_name = 'settings'
