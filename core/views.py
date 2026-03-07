@@ -61,7 +61,8 @@ class AdminProjectListView(LoginRequiredMixin, ListView):
 class AdminProjectCreateView(LoginRequiredMixin, SuccessMessageMixin, AdminCRUDContextMixin, CreateView):
     model = Project
     template_name = 'admin/model_form.html'
-    fields = '__all__'
+    # slug is generated automatically; don't show it on the form
+    fields = ['title', 'description', 'image', 'tech_stack', 'github_url', 'live_url', 'featured', 'category']
     success_url = reverse_lazy('admin_projects')
     success_message = "Projet créé avec succès !"
     model_name = "Projet"
@@ -71,7 +72,8 @@ class AdminProjectCreateView(LoginRequiredMixin, SuccessMessageMixin, AdminCRUDC
 class AdminProjectUpdateView(LoginRequiredMixin, SuccessMessageMixin, AdminCRUDContextMixin, UpdateView):
     model = Project
     template_name = 'admin/model_form.html'
-    fields = '__all__'
+    # slug handled internally, hide from user
+    fields = ['title', 'description', 'image', 'tech_stack', 'github_url', 'live_url', 'featured', 'category']
     success_url = reverse_lazy('admin_projects')
     success_message = "Projet mis à jour avec succès !"
     model_name = "Projet"
@@ -157,7 +159,8 @@ class AdminCategoryListView(LoginRequiredMixin, ListView):
 class AdminCategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, AdminCRUDContextMixin, CreateView):
     model = Category
     template_name = 'admin/model_form.html'
-    fields = '__all__'
+    # slug generated automatically; only name is required
+    fields = ['name']
     success_url = reverse_lazy('admin_categories')
     success_message = "Catégorie créée avec succès !"
     model_name = "Catégorie"
@@ -167,7 +170,7 @@ class AdminCategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, AdminCRUD
 class AdminCategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, AdminCRUDContextMixin, UpdateView):
     model = Category
     template_name = 'admin/model_form.html'
-    fields = '__all__'
+    fields = ['name']
     success_url = reverse_lazy('admin_categories')
     success_message = "Catégorie mise à jour avec succès !"
     model_name = "Catégorie"
@@ -189,7 +192,8 @@ class AdminPostListView(LoginRequiredMixin, ListView):
 class AdminPostCreateView(LoginRequiredMixin, SuccessMessageMixin, AdminCRUDContextMixin, CreateView):
     model = Post
     template_name = 'admin/model_form.html'
-    fields = '__all__'
+    # slug auto-generated from title
+    fields = ['title', 'featured_image', 'content', 'excerpt', 'tags', 'published_date', 'is_published']
     success_url = reverse_lazy('admin_posts')
     success_message = "Article créé avec succès !"
     model_name = "Article"
@@ -199,7 +203,7 @@ class AdminPostCreateView(LoginRequiredMixin, SuccessMessageMixin, AdminCRUDCont
 class AdminPostUpdateView(LoginRequiredMixin, SuccessMessageMixin, AdminCRUDContextMixin, UpdateView):
     model = Post
     template_name = 'admin/model_form.html'
-    fields = '__all__'
+    fields = ['title', 'featured_image', 'content', 'excerpt', 'tags', 'published_date', 'is_published']
     success_url = reverse_lazy('admin_posts')
     success_message = "Article mis à jour avec succès !"
     model_name = "Article"

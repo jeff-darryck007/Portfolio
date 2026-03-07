@@ -21,7 +21,8 @@ class BaseAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(BaseAdmin):
     list_display = ('name', 'slug', 'is_active')
-    prepopulated_fields = {'slug': ('name',)}
+    exclude = ('slug',)
+    prepopulated_fields = {'slug': ('name',)}  # keeps automatic behavior if field ever shown
 
 @admin.register(Service)
 class ServiceAdmin(BaseAdmin):
@@ -36,6 +37,7 @@ class SkillAdmin(BaseAdmin):
 @admin.register(Project)
 class ProjectAdmin(BaseAdmin):
     list_display = ('title', 'category', 'featured', 'is_active', 'created')
+    exclude = ('slug',)
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title', 'tech_stack')
     list_filter = ('category', 'featured', 'is_active', 'created')
@@ -80,12 +82,14 @@ class CompanySettingAdmin(BaseAdmin):
 @admin.register(Tag)
 class TagAdmin(BaseAdmin):
     list_display = ('name', 'slug', 'is_active')
+    exclude = ('slug',)
     prepopulated_fields = {'slug': ('name',)}
 
 @admin.register(Post)
 class PostAdmin(BaseAdmin):
     list_display = ('title', 'is_published', 'published_date', 'is_active')
     list_filter = ('is_published', 'is_active', 'tags')
+    exclude = ('slug',)
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title', 'content')
     filter_horizontal = ('tags',)

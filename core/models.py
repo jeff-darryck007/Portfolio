@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.utils.text import slugify
 
 class TimeStampedModel(models.Model):
     """
@@ -61,7 +62,19 @@ class BaseModel(TimeStampedModel, ActivatorModel):
 
 class Category(BaseModel):
     name = models.CharField(max_length=100, verbose_name=_("Nom"))
-    slug = models.SlugField(unique=True, verbose_name=_("Slug"))
+    slug = models.SlugField(unique=True, blank=True, verbose_name=_("Slug"))
+
+    def save(self, *args, **kwargs):
+        # auto-generate slug from name if not provided and ensure uniqueness
+        if not self.slug and self.name:
+            base = slugify(self.name)
+            slug = base
+            count = 1
+            while Category.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base}-{count}"
+                count += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     class Meta(BaseModel.Meta):
         verbose_name = _("Catégorie")
@@ -99,8 +112,20 @@ class Skill(BaseModel):
 
 class Project(BaseModel):
     title = models.CharField(max_length=200, verbose_name=_("Titre"))
-    slug = models.SlugField(unique=True, verbose_name=_("Slug"))
+    slug = models.SlugField(unique=True, blank=True, verbose_name=_("Slug"))
     description = models.TextField(verbose_name=_("Description"))
+
+    def save(self, *args, **kwargs):
+        # auto-generate slug from title if not provided and avoid duplicates
+        if not self.slug and self.title:
+            base = slugify(self.title)
+            slug = base
+            count = 1
+            while Project.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base}-{count}"
+                count += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
     image = models.ImageField(upload_to='projects/', verbose_name=_("Image"))
     tech_stack = models.CharField(max_length=200, help_text=_("Comma separated tags"), verbose_name=_("Technologies"))
     github_url = models.URLField(blank=True, verbose_name=_("URL GitHub"))
@@ -184,7 +209,18 @@ class CompanySetting(BaseModel):
 
 class Tag(BaseModel):
     name = models.CharField(max_length=50, unique=True, verbose_name=_("Nom"))
-    slug = models.SlugField(unique=True, verbose_name=_("Slug"))
+    slug = models.SlugField(unique=True, blank=True, verbose_name=_("Slug"))
+
+    def save(self, *args, **kwargs):
+        if not self.slug and self.name:
+            base = slugify(self.name)
+            slug = base
+            count = 1
+            while Tag.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base}-{count}"
+                count += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     class Meta(BaseModel.Meta):
         verbose_name = _("Tag")
@@ -195,7 +231,7 @@ class Tag(BaseModel):
 
 class Post(BaseModel):
     title = models.CharField(max_length=200, verbose_name=_("Titre"))
-    slug = models.SlugField(unique=True, verbose_name=_("Slug"))
+    slug = models.SlugField(unique=True, blank=True, verbose_name=_("Slug"))
     featured_image = models.ImageField(upload_to='blog/', verbose_name=_("Image mise en avant"))
     content = models.TextField(verbose_name=_("Contenu"))
     excerpt = models.TextField(blank=True, verbose_name=_("Extrait"))
@@ -212,6 +248,16 @@ class Post(BaseModel):
         return self.title
 
     def save(self, *args, **kwargs):
+        # slug generation (if empty) + ensure uniqueness
+        if not self.slug and self.title:
+            base = slugify(self.title)
+            slug = base
+            count = 1
+            while Post.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base}-{count}"
+                count += 1
+            self.slug = slug
+        # set published_date when marking as published
         if self.is_published and not self.published_date:
             self.published_date = timezone.now()
         super().save(*args, **kwargs)

@@ -33,6 +33,10 @@
             <form method="post" enctype="multipart/form-data" class="space-y-6">
                 {% csrf_token %}
                 
+                <p class="text-xs text-slate-400 italic">
+                    Le slug est créé automatiquement à partir du nom ou du titre ; il n'est pas modifiable.
+                </p>
+
                 <div class="grid grid-cols-1 gap-6">
                     {% for field in form %}
                     <div class="space-y-2">
