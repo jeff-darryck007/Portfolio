@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Home - Jeff Darick | Full Stack Django & DevOps Engineer{% endblock %}
+{% block title %}Home - Jeff Darick | Full Stack Vue.js & Symfony UI/UX Designer{% endblock %}
 
 {% block content %}
 
@@ -394,17 +394,17 @@ Invalid block tag on line 400: 'static', expected 'endblock'. Did you forget to 
   <div>
     <div class="badge fade-up visible">
       <span class="ping"></span>
-      AVAILABLE FOR NEW PROJECTS
+      AVAILABLE FOR UI/UX & FULLSTACK PROJECTS
     </div>
 
     <h1 class="hero-title fade-up visible" style="transition-delay:.1s">
       Full Stack<br>
-      <span class="highlight">Django</span> &<br>
-      DevOps Engineer
+      <span class="highlight">Vue.js</span> &<br>
+      Symfony UI/UX Designer
     </h1>
 
     <p class="hero-sub fade-up visible" style="transition-delay:.2s">
-      Architecting high-performance web systems with Python, Django, and Kubernetes. Specialized in automated CI/CD pipelines and scalable cloud infrastructures that stay fast and secure.
+      Crafting intuitive experiences with Vue.js and Symfony. Specialized in polished UI/UX design, seamless frontend interactions, and maintainable backend architecture.
     </p>
 
     <div class="flex flex-wrap gap-4 fade-up visible" style="transition-delay:.3s">
@@ -424,26 +424,26 @@ Invalid block tag on line 400: 'static', expected 'endblock'. Did you forget to 
 
     <!-- ── PROFILE PHOTO ── -->
     <div class="photo-card">
-      <!--
+      {% comment %}
         ┌─────────────────────────────────────────────────────────────┐
         │  PHOTO INSTRUCTIONS                                         │
         │  Replace the src below with your actual photo URL.         │
-        │  In Django you can use:                                     │
+        │  In Django or Symfony you can use:                          │
         │    src="{{ request.user.profile.photo.url }}"              │
         │  Or a static file:                                          │
         │    src="{% static 'img/jeff-darick.jpg' %}"               │
         └─────────────────────────────────────────────────────────────┘
-      -->
+      {% endcomment %}
       <img
-        src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=900&auto=format&fit=crop&q=80"
-        alt="Jeff Darick – Full Stack Django & DevOps Engineer"
+        src="{% static 'images/image.png' %}"
+        alt="Jeff Darick – Full Stack Vue.js & Symfony UI/UX Designer"
         loading="eager"
       />
       <div class="photo-overlay"></div>
       <div class="photo-info">
         <div>
           <div class="photo-name">Jeff Darick</div>
-          <div class="photo-role">// Django & DevOps Engineer</div>
+          <div class="photo-role">// Vue.js & Symfony UI/UX Designer</div>
         </div>
         <div class="photo-location">
           <span class="material-symbols-outlined" style="font-size:14px">location_on</span>
@@ -464,12 +464,12 @@ Invalid block tag on line 400: 'static', expected 'endblock'. Did you forget to 
         <div style="width:60px"></div>
       </div>
       <div class="terminal-body">
-        <div><span class="t-prompt">$ </span><span class="t-cmd">python manage.py deploy --env production</span></div>
-        <div class="t-comment"># Initiating automated deployment sequence...</div>
-        <div class="t-ok"><span class="material-symbols-outlined" style="font-size:14px">check_circle</span> Containerized Django app [Success]</div>
-        <div class="t-ok"><span class="material-symbols-outlined" style="font-size:14px">check_circle</span> PostgreSQL migration [Success]</div>
-        <div class="t-ok"><span class="material-symbols-outlined" style="font-size:14px">check_circle</span> Kubernetes rollout [Success]</div>
-        <div class="t-live">⚡ Live → https://api.production.internal</div>
+        <div><span class="t-prompt">$ </span><span class="t-cmd">npm run build && php bin/console cache:clear</span></div>
+        <div class="t-comment"># Building Vue frontend & clearing Symfony cache...</div>
+        <div class="t-ok"><span class="material-symbols-outlined" style="font-size:14px">check_circle</span> Frontend compiled [Success]</div>
+        <div class="t-ok"><span class="material-symbols-outlined" style="font-size:14px">check_circle</span> Backend optimized [Success]</div>
+        <div class="t-ok"><span class="material-symbols-outlined" style="font-size:14px">check_circle</span> Assets deployed [Success]</div>
+        <div class="t-live">⚡ Live → https://app.example.com</div>
       </div>
     </div>
 
@@ -528,15 +528,20 @@ Invalid block tag on line 400: 'static', expected 'endblock'. Did you forget to 
     </div>
     {% empty %}
     <!-- Fallback cards -->
-    {% for item in fallback_skills %}
     <div class="skill-card fade-up" data-proficiency="90">
       <div class="skill-icon"><span class="material-symbols-outlined" style="font-size:26px">code</span></div>
-      <div class="skill-name">Django</div>
-      <p class="skill-desc">Robust backend framework for secure and scalable Python web applications.</p>
+      <div class="skill-name">Symfony</div>
+      <p class="skill-desc">Feature‑rich PHP framework powering modern enterprise applications with elegance.</p>
       <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
       <div class="skill-lvl"><span>Proficiency</span><span>90%</span></div>
     </div>
-    {% endfor %}
+    <div class="skill-card fade-up" data-proficiency="85">
+      <div class="skill-icon"><span class="material-symbols-outlined" style="font-size:26px">vuejs</span></div>
+      <div class="skill-name">Vue.js</div>
+      <p class="skill-desc">Progressive JavaScript framework for building dynamic, component‑based UIs.</p>
+      <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+      <div class="skill-lvl"><span>Proficiency</span><span>85%</span></div>
+    </div>
     {% endfor %}
   </div>
 </section>
