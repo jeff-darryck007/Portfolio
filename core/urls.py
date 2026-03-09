@@ -51,5 +51,6 @@ urlpatterns = [
     path('manage/settings/<uuid:pk>/update/', views.AdminCompanySettingUpdateView.as_view(), name='admin_setting_update'),
     # Secret Login
     path('jeff-admin-login/', auth_views.LoginView.as_view(template_name='core/login.html'), name='login'),
+    
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
