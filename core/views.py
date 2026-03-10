@@ -38,7 +38,12 @@ def contact(request):
     return render(request, 'contact.html')
 
 def project_list(request):
-    return render(request, 'project.html')
+    projects = Project.objects.all().order_by('-created')
+    testimonials = Testimonial.objects.all().order_by('-created')[:3]
+    return render(request, 'project.html', {
+        'projects': projects,
+        'testimonials': testimonials
+    })
 
 def cv(request):
     return render(request, 'cv.html')

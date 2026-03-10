@@ -350,6 +350,19 @@ Invalid block tag on line 400: 'static', expected 'endblock'. Did you forget to 
     margin-top: 6px;
   }
 
+  /* ── PROJECTS PREVIEW ─────────────────────── */
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,.4); }
+  .project-card img { width: 100%; height: 120px; object-fit: cover; }
+  .project-card h3 { font-size: 1.2rem; margin: .75rem; color: #e2e8f0; }
+  .project-card a { display: inline-block; margin: 0 .75rem .75rem; color: var(--primary); font-weight: 600; }
+
   /* ── TESTIMONIALS ─────────────────────────── */
   .testimonial-card {
     background: var(--bg-dark);
@@ -566,6 +579,24 @@ Invalid block tag on line 400: 'static', expected 'endblock'. Did you forget to 
     {% endfor %}
   </div>
 </section>
+
+<!-- ═══ PROJECTS PREVIEW ═══════════════════════════════════════ -->
+{% if projects %}
+<section class="max-w-7xl mx-auto px-6 py-20">
+  <h2 class="text-3xl font-black text-white mb-8 text-center">Featured Projects</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for project in projects %}
+    <div class="project-card">
+      {% if project.image %}
+      <img src="{{ project.image.url }}" alt="{{ project.title }}" />
+      {% endif %}
+      <h3>{{ project.title }}</h3>
+      <a href="{{ project.github_url|default:'#' }}">View code</a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
 
 <!-- ═══ TESTIMONIALS ═════════════════════════════════════════ -->
 {% if testimonials %}
