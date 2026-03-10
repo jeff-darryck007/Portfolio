@@ -41,41 +41,17 @@
     <div class="lg:col-span-6 space-y-8">
         <header class="space-y-4">
             <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
-                Scaling Django with Kubernetes: A Deep Dive into <span class="text-primary">Horizontal Pod Autoscaling</span>
+                {{ post.title }}
             </h1>
             <div class="flex flex-wrap items-center gap-4 text-slate-500 text-sm font-mono uppercase tracking-widest">
-                <time>Oct 24, 2023</time>
-                <span>•</span>
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 12 min read</span>
+                {% if post.published_date %}<time>{{ post.published_date|date:"M d, Y" }}</time>{% endif %}
+                {% if post.published_date %}<span>•</span>{% endif %}
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> <!-- placeholder read time --> 5 min read</span>
             </div>
         </header>
         
         <div class="prose prose-slate dark:prose-invert max-w-none space-y-6 text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
-            <p>
-                In a modern microservices architecture, managing load spikes automatically is not just a luxury—it's a requirement. For Django applications running on Kubernetes, Horizontal Pod Autoscaling (HPA) allows us to dynamically scale our web pods based on CPU utilization or custom metrics like request per second.
-            </p>
-            
-            <div class="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 my-8">
-                <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex justify-between items-center">
-                    <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">hpa-definition.yaml</span>
-                </div>
-                <pre class="p-6 text-sm font-mono text-cyan-400 overflow-x-auto"><code>apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: django-app-hpa
-spec:
-  minReplicas: 3
-  maxReplicas: 15
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70</code></pre>
-            </div>
-            
-            <p>Django is inherently synchronous by nature. When a worker process gets blocked by a long-running DB query, that pod's throughput drops. HPA ensures we spin up more replicas before the latency impacts the end user.</p>
+            {{ post.content|safe }}
         </div>
     </div>
 

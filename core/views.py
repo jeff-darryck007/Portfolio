@@ -21,11 +21,16 @@ def about(request):
 def experience(request):
     return render(request, 'experience.html')
 
+from django.shortcuts import get_object_or_404
+
+
 def blog(request):
-    return render(request, 'feed.html')
+    posts = Post.objects.filter(is_published=True).order_by('-published_date')
+    return render(request, 'feed.html', {'posts': posts})
 
 def blog_detail(request, pk=None):
-    return render(request, 'blog_detail.html')
+    post = get_object_or_404(Post, pk=pk, is_published=True)
+    return render(request, 'blog_detail.html', {'post': post})
 
 def contact(request):
     return render(request, 'contact.html')
