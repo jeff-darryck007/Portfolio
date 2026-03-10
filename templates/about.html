@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}About - Expert DevOps Profile | Jeff Darick{% endblock %}
+{% block title %}About - Full Stack Vue.js & Symfony UI/UX Designer | Jeff Darick{% endblock %}
 
 {% block content %}
 <br>
@@ -12,12 +12,14 @@
             <div class="h-[1px] w-12 bg-primary/30"></div>
         </div>
         <h1 class="text-4xl sm:text-5xl lg:text-7xl font-mono font-bold leading-[1.1] tracking-tight glow-text">
-            Engineering <br class="hidden sm:block"/>
-            <span class="text-primary italic">High-Availability</span><br class="hidden sm:block"/>
-            Ecosystems.
+            Crafting <br class="hidden sm:block"/>
+            <span class="text-primary italic">Intuitive UI</span><br class="hidden sm:block"/>
+            & Reliable APIs.
         </h1>
         <p class="text-slate-400 text-lg leading-relaxed max-w-2xl font-light">
-            Specialized in designing and maintaining distributed systems. I transform complex monolithic legacies into resilient, <span class="text-white font-mono text-base">Cloud-Native</span> architectures through advanced container orchestration and immutable infrastructure.
+            I build polished, responsive front‑ends with Vue.js paired with robust
+            Symfony back‑ends. My focus is delivering seamless UI/UX while keeping
+            architectures maintainable and scalable.
         </p>
         <div class="flex gap-6 mt-4">
             <a href="{% url 'cv' %}" class="font-mono text-xs tracking-widest border border-primary text-primary px-8 py-4 hover:bg-primary/10 transition-all duration-300">GET_MANIFEST.PDF</a>
@@ -45,55 +47,54 @@
         <!-- Tech Cards -->
         <div class="group glow-box p-8 border border-slate-800 bg-slate-900/30 transition-all duration-500 cursor-default">
             <div class="flex justify-between items-start mb-10">
-                <span class="material-symbols-outlined text-4xl text-slate-500 group-hover:text-primary transition-colors">cloud</span>
-                <span class="mono-tag">Public_Cloud</span>
+                <span class="material-symbols-outlined text-4xl text-slate-500 group-hover:text-primary transition-colors">code</span>
+                <span class="mono-tag">Frontend</span>
             </div>
-            <h3 class="font-mono text-xl font-bold text-white mb-2 uppercase">AWS_Cloud</h3>
-            <p class="text-slate-500 text-sm leading-relaxed font-light mb-6">Expertise in VPC design, IAM policies, and serverless architectures using Lambda & API Gateway.</p>
+            <h3 class="font-mono text-xl font-bold text-white mb-2 uppercase">Vue.js & Tailwind</h3>
+            <p class="text-slate-500 text-sm leading-relaxed font-light mb-6">Building reactive, component-driven interfaces and sleek user experiences.</p>
             <div class="flex flex-wrap gap-2">
-                <span class="font-mono text-[9px] text-primary/70">EC2</span>
-                <span class="font-mono text-[9px] text-primary/70">S3</span>
-                <span class="font-mono text-[9px] text-primary/70">RDS</span>
-                <span class="font-mono text-[9px] text-primary/70">EKS</span>
+                <span class="font-mono text-[9px] text-primary/70">Vue 3</span>
+                <span class="font-mono text-[9px] text-primary/70">Pinia</span>
+                <span class="font-mono text-[9px] text-primary/70">Vite</span>
             </div>
         </div>
         <div class="group glow-box p-8 border border-slate-800 bg-slate-900/30 transition-all duration-500 cursor-default">
             <div class="flex justify-between items-start mb-10">
-                <span class="material-symbols-outlined text-4xl text-slate-500 group-hover:text-primary transition-colors">hub</span>
-                <span class="mono-tag">Orchestration</span>
+                <span class="material-symbols-outlined text-4xl text-slate-500 group-hover:text-primary transition-colors">storage</span>
+                <span class="mono-tag">Backend</span>
             </div>
-            <h3 class="font-mono text-xl font-bold text-white mb-2 uppercase">Kubernetes</h3>
-            <p class="text-slate-500 text-sm leading-relaxed font-light mb-6">Production-grade cluster management, Helm charting, and Istio service mesh implementations.</p>
+            <h3 class="font-mono text-xl font-bold text-white mb-2 uppercase">Symfony & PHP</h3>
+            <p class="text-slate-500 text-sm leading-relaxed font-light mb-6">Crafting APIs, CMSs and business logic with the Symfony ecosystem.</p>
             <div class="flex flex-wrap gap-2">
-                <span class="font-mono text-[9px] text-primary/70">ArgoCD</span>
-                <span class="font-mono text-[9px] text-primary/70">Karpenter</span>
-                <span class="font-mono text-[9px] text-primary/70">Cilium</span>
+                <span class="font-mono text-[9px] text-primary/70">API Platform</span>
+                <span class="font-mono text-[9px] text-primary/70">Doctrine</span>
+                <span class="font-mono text-[9px] text-primary/70">Twig</span>
             </div>
         </div>
         <div class="group glow-box p-8 border border-slate-800 bg-slate-900/30 transition-all duration-500 cursor-default">
             <div class="flex justify-between items-start mb-10">
-                <span class="material-symbols-outlined text-4xl text-slate-500 group-hover:text-primary transition-colors">deployed_code</span>
-                <span class="mono-tag">Virtualization</span>
+                <span class="material-symbols-outlined text-4xl text-slate-500 group-hover:text-primary transition-colors">design_services</span>
+                <span class="mono-tag">UI/UX</span>
             </div>
-            <h3 class="font-mono text-xl font-bold text-white mb-2 uppercase">Docker_Core</h3>
-            <p class="text-slate-500 text-sm leading-relaxed font-light mb-6">Optimized multi-stage builds, rootless execution, and container security hardening.</p>
+            <h3 class="font-mono text-xl font-bold text-white mb-2 uppercase">Figma & Prototyping</h3>
+            <p class="text-slate-500 text-sm leading-relaxed font-light mb-6">User-first design process with wireframes, prototypes and usability testing.</p>
             <div class="flex flex-wrap gap-2">
-                <span class="font-mono text-[9px] text-primary/70">Compose</span>
-                <span class="font-mono text-[9px] text-primary/70">Registry</span>
-                <span class="font-mono text-[9px] text-primary/70">Scan</span>
+                <span class="font-mono text-[9px] text-primary/70">Figma</span>
+                <span class="font-mono text-[9px] text-primary/70">Sketch</span>
+                <span class="font-mono text-[9px] text-primary/70">AdobeXD</span>
             </div>
         </div>
         <div class="group glow-box p-8 border border-slate-800 bg-slate-900/30 transition-all duration-500 cursor-default">
             <div class="flex justify-between items-start mb-10">
-                <span class="material-symbols-outlined text-4xl text-slate-500 group-hover:text-primary transition-colors">token</span>
-                <span class="mono-tag">Provisioning</span>
+                <span class="material-symbols-outlined text-4xl text-slate-500 group-hover:text-primary transition-colors">build_circle</span>
+                <span class="mono-tag">Tools</span>
             </div>
-            <h3 class="font-mono text-xl font-bold text-white mb-2 uppercase">Terraform</h3>
-            <p class="text-slate-500 text-sm leading-relaxed font-light mb-6">Infrastructure as Code for modular, reproducible environments across multi-region deployments.</p>
+            <h3 class="font-mono text-xl font-bold text-white mb-2 uppercase">Workflow & QA</h3>
+            <p class="text-slate-500 text-sm leading-relaxed font-light mb-6">Development tooling, testing, and continuous integration for stable delivery.</p>
             <div class="flex flex-wrap gap-2">
-                <span class="font-mono text-[9px] text-primary/70">HCL</span>
-                <span class="font-mono text-[9px] text-primary/70">State_Mgmt</span>
-                <span class="font-mono text-[9px] text-primary/70">Terragrunt</span>
+                <span class="font-mono text-[9px] text-primary/70">Git</span>
+                <span class="font-mono text-[9px] text-primary/70">Webpack</span>
+                <span class="font-mono text-[9px] text-primary/70">Composer</span>
             </div>
         </div>
     </div>

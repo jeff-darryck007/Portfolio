@@ -10,9 +10,11 @@ from .models import Project, Skill, Experience, Category, Testimonial, CompanySe
 def home(request):
     projects = Project.objects.filter(featured=True).order_by('-created')[:3]
     skills = Skill.objects.all().order_by('-proficiency')
+    testimonials = Testimonial.objects.all().order_by('-created')[:5]
     return render(request, 'core/index.html', {
         'projects': projects,
-        'skills': skills
+        'skills': skills,
+        'testimonials': testimonials
     })
 
 def about(request):
