@@ -287,3 +287,4 @@ class AdminCompanySettingUpdateView(LoginRequiredMixin, SuccessMessageMixin, Adm
     model_name = "Configuration"
     model_name_plural = "Configuration"
     list_url_name = "admin_settings"
+    
