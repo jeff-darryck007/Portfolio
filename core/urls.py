@@ -12,7 +12,6 @@ urlpatterns = [
     path('projects/', views.project_list, name='project_list'),
     path('cv/', views.cv, name='cv'),
     path('dashboard/', views.dashboard, name='dashboard'),
-
     # Admin CRUD URLs
     path('manage/projects/', views.AdminProjectListView.as_view(), name='admin_projects'),
     path('manage/projects/create/', views.AdminProjectCreateView.as_view(), name='admin_project_create'),
@@ -53,5 +52,5 @@ urlpatterns = [
     path('jeff-admin-login/', auth_views.LoginView.as_view(template_name='core/login.html'), name='login'),
     
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    
+
 ]
