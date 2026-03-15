@@ -1,453 +1,166 @@
-{% comment %}
-  NAVBAR PREMIUM — Jeff Darrick Portfolio
-  Mobile menu: overlay glass morphism plein écran, animations fluides,
-  typographie Syne, numéros de ligne style engineering, fond opaque.
-{% endcomment %}
+{% load i18n %}
+<section id="process" class="pb-24 bg-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative" data-aos="fade-up">
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
-
-/* ── MOBILE MENU ─────────────────────────────── */
-[x-cloak] { display: none !important; }
-
-.mobile-overlay {
-  font-family: 'Syne', sans-serif;
-}
-
-.mobile-overlay .menu-inner {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-/* Nav items avec numérotation style ingénieur */
-.m-nav-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  border-radius: 16px;
-  text-decoration: none;
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.m-nav-item::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(0,245,160,0.05));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 16px;
-}
-
-.m-nav-item:hover::before,
-.m-nav-item.active::before {
-  opacity: 1;
-}
-
-.m-nav-item:hover {
-  transform: translateX(6px);
-}
-
-.m-nav-item.active {
-  transform: translateX(6px);
-}
-
-/* Numéro de ligne */
-.m-nav-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  color: rgba(108,99,255,0.4);
-  min-width: 24px;
-  letter-spacing: 0.05em;
-  transition: color 0.3s;
-  flex-shrink: 0;
-}
-
-.m-nav-item:hover .m-nav-num,
-.m-nav-item.active .m-nav-num {
-  color: rgba(0,245,160,0.8);
-}
-
-/* Texte principal */
-.m-nav-label {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: rgba(226, 232, 240, 0.5);
-  transition: color 0.3s ease;
-  flex: 1;
-  line-height: 1;
-}
-
-.m-nav-item:hover .m-nav-label {
-  color: #f0f4ff;
-}
-
-.m-nav-item.active .m-nav-label {
-  color: #f0f4ff;
-}
-
-/* Flèche animée */
-.m-nav-arrow {
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: all 0.25s ease;
-  color: rgba(108,99,255,0.7);
-  flex-shrink: 0;
-}
-
-.m-nav-item:hover .m-nav-arrow,
-.m-nav-item.active .m-nav-arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Active dot */
-.m-nav-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #6C63FF;
-  flex-shrink: 0;
-  box-shadow: 0 0 8px rgba(108,99,255,0.8);
-  animation: dotPulse 2s ease-in-out infinite;
-}
-@keyframes dotPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(0.85); }
-}
-
-/* Séparateur décoratif */
-.m-nav-separator {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(108,99,255,0.2), rgba(0,245,160,0.15), transparent);
-  margin: 0.25rem 1.25rem;
-}
-
-/* Badge disponibilité */
-.avail-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 14px;
-  background: rgba(0,245,160,0.07);
-  border: 1px solid rgba(0,245,160,0.2);
-  border-radius: 99px;
-}
-.avail-ping {
-  position: relative;
-  width: 8px; height: 8px;
-  flex-shrink: 0;
-}
-.avail-ping::before {
-  content: '';
-  position: absolute;
-  inset: 0; border-radius: 50%;
-  background: #00F5A0;
-  animation: ping 1.6s ease-out infinite;
-}
-.avail-ping::after {
-  content: '';
-  position: absolute;
-  inset: 0; border-radius: 50%;
-  background: #00F5A0;
-}
-@keyframes ping {
-  0% { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(2.4); opacity: 0; }
-}
-
-/* CTA hire me */
-.hire-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  padding: 16px;
-  background: linear-gradient(135deg, #6C63FF, #8b5cf6);
-  color: #fff;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  border-radius: 16px;
-  text-decoration: none;
-  box-shadow: 0 8px 32px rgba(108,99,255,0.4);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-  overflow: hidden;
-}
-.hire-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,245,160,0.15), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.hire-btn:hover::before { opacity: 1; }
-.hire-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 40px rgba(108,99,255,0.5);
-}
-
-/* Stagger animation pour les items */
-.m-nav-item:nth-child(1) { animation-delay: 0.05s; }
-.m-nav-item:nth-child(2) { animation-delay: 0.1s; }
-.m-nav-item:nth-child(3) { animation-delay: 0.15s; }
-.m-nav-item:nth-child(4) { animation-delay: 0.2s; }
-.m-nav-item:nth-child(5) { animation-delay: 0.25s; }
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(-16px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-/* Ligne décorative verticale gauche */
-.nav-line {
-  position: absolute;
-  left: 24px;
-  top: 0; bottom: 0;
-  width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(108,99,255,0.15) 20%, rgba(108,99,255,0.15) 80%, transparent);
-}
-</style>
-
-
-<!-- ═══════════════════════════════════════════
-     HEADER PRINCIPAL
-═══════════════════════════════════════════ -->
-<header x-data="{ scrolled: false }"
-        x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 20 })"
-        :class="scrolled ? 'py-3 bg-[#070B14] shadow-lg shadow-black/20' : 'py-5 bg-[#070B14]/80 backdrop-blur-xl'"
-        class="fixed top-0 left-0 right-0 z-[100] px-6 lg:px-20 border-b border-white/[0.07] transition-all duration-500">
-
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-
-        <!-- Logo -->
-        <a href="{% url 'home' %}" class="flex items-center gap-3 group flex-shrink-0">
-            <div class="relative size-9 flex items-center justify-center">
-                <div class="absolute inset-0 bg-[#6C63FF] rounded-lg rotate-45 scale-75 group-hover:rotate-0 group-hover:scale-100 transition-all duration-500 opacity-20 group-hover:opacity-100"></div>
-                <div class="absolute inset-0 border-2 border-[#6C63FF] rounded-lg rotate-45 group-hover:rotate-0 group-hover:rounded-xl transition-all duration-500"></div>
-                <span class="relative text-[10px] font-black text-[#6C63FF] tracking-tighter z-10" style="font-family:'JetBrains Mono',monospace">J·D</span>
-            </div>
-            <div class="flex flex-col leading-none gap-0.5">
-                <span class="text-[13px] font-black tracking-[0.2em] uppercase text-white" style="font-family:'Syne',sans-serif">Jeff Darrick</span>
-                <span class="text-[9px] font-semibold tracking-[0.3em] uppercase text-[#6C63FF]/70" style="font-family:'JetBrains Mono',monospace">Portfolio</span>
-            </div>
-        </a>
-
-        <!-- Desktop Nav -->
-        <nav class="hidden md:flex items-center">
-            <div class="flex items-center gap-1 bg-white/[0.04] rounded-xl p-1 border border-white/[0.07]">
-                <a href="{% url 'home' %}"       class="px-4 py-2 text-[13px] font-semibold rounded-lg tracking-wide transition-all duration-200 {% if request.resolver_match.url_name == 'home' %}bg-white/10 text-[#6C63FF] border border-white/10{% else %}text-slate-400 hover:text-white hover:bg-white/[0.06]{% endif %}" style="font-family:'Syne',sans-serif">Home</a>
-                <a href="{% url 'about' %}"      class="px-4 py-2 text-[13px] font-semibold rounded-lg tracking-wide transition-all duration-200 {% if request.resolver_match.url_name == 'about' %}bg-white/10 text-[#6C63FF] border border-white/10{% else %}text-slate-400 hover:text-white hover:bg-white/[0.06]{% endif %}" style="font-family:'Syne',sans-serif">About</a>
-                <a href="{% url 'experience' %}" class="px-4 py-2 text-[13px] font-semibold rounded-lg tracking-wide transition-all duration-200 {% if request.resolver_match.url_name == 'experience' %}bg-white/10 text-[#6C63FF] border border-white/10{% else %}text-slate-400 hover:text-white hover:bg-white/[0.06]{% endif %}" style="font-family:'Syne',sans-serif">Experience</a>
-                <a href="{% url 'blog' %}"       class="px-4 py-2 text-[13px] font-semibold rounded-lg tracking-wide transition-all duration-200 {% if request.resolver_match.url_name == 'blog' %}bg-white/10 text-[#6C63FF] border border-white/10{% else %}text-slate-400 hover:text-white hover:bg-white/[0.06]{% endif %}" style="font-family:'Syne',sans-serif">Blog</a>
-                <a href="{% url 'contact' %}"    class="px-4 py-2 text-[13px] font-semibold rounded-lg tracking-wide transition-all duration-200 {% if request.resolver_match.url_name == 'contact' %}bg-white/10 text-[#6C63FF] border border-white/10{% else %}text-slate-400 hover:text-white hover:bg-white/[0.06]{% endif %}" style="font-family:'Syne',sans-serif">Contact</a>
-            </div>
-        </nav>
-
-        <!-- Actions droite -->
-        <div class="flex items-center gap-3">
-            <!-- Badge disponibilité desktop -->
-            <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00F5A0]/[0.07] border border-[#00F5A0]/20">
-                <span class="relative flex size-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00F5A0] opacity-75"></span>
-                    <span class="relative inline-flex rounded-full size-2 bg-[#00F5A0]"></span>
-                </span>
-                <span class="text-[11px] font-semibold text-[#00F5A0] tracking-wide" style="font-family:'JetBrains Mono',monospace">Available</span>
-            </div>
-
-            <!-- CTA Hire Me desktop -->
-            <a href="{% url 'contact' %}"
-               class="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-[#6C63FF] hover:bg-[#5a52e0] text-white text-[13px] font-bold rounded-xl shadow-lg shadow-[#6C63FF]/30 transition-all duration-300 group"
-               style="font-family:'Syne',sans-serif">
-                <span>Hire Me</span>
-                <svg class="size-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
-                </svg>
-            </a>
-
-            <!-- Bouton hamburger mobile — style terminal -->
-            <button @click="$store.nav.toggle()"
-                    class="md:hidden relative size-10 flex items-center justify-center rounded-xl border border-white/[0.1] bg-white/[0.04] text-slate-400 hover:border-[#6C63FF]/50 hover:text-[#6C63FF] transition-all duration-200">
-                <!-- Icône hamburger custom — 3 lignes animées -->
-                <div class="flex flex-col gap-[5px] w-4" :class="$store.nav.open ? 'gap-0' : 'gap-[5px]'">
-                    <span class="block h-[1.5px] w-full bg-current rounded-full transition-all duration-300 origin-center"
-                          :class="$store.nav.open ? 'rotate-45 translate-y-[1.5px]' : ''"></span>
-                    <span class="block h-[1.5px] bg-current rounded-full transition-all duration-200"
-                          :class="$store.nav.open ? 'w-0 opacity-0' : 'w-full'"></span>
-                    <span class="block h-[1.5px] w-full bg-current rounded-full transition-all duration-300 origin-center"
-                          :class="$store.nav.open ? '-rotate-45 -translate-y-[1.5px]' : ''"></span>
-                </div>
-            </button>
-        </div>
+    <div class="mb-12 pt-16">
+      <span class="text-primary-500 font-bold uppercase tracking-widest text-sm">{% trans "Our Workflow" %}</span>
+      <h2 class="text-secondary-500 text-3xl sm:text-4xl lg:text-5xl font-black mt-3 max-w-xl leading-tight">
+        {% trans "How we transform your" %} <span class="text-black">{% trans "vision into reality." %}</span>
+      </h2>
     </div>
-</header>
 
+    <style>
+      @keyframes step-in {
+        from { opacity:0; transform:translateX(-16px); }
+        to   { opacity:1; transform:translateX(0); }
+      }
+      .proc-card {
+        opacity:0;
+        animation: step-in 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .proc-card:nth-child(1) { animation-delay:0.1s; }
+      .proc-card:nth-child(2) { animation-delay:0.2s; }
+      .proc-card:nth-child(3) { animation-delay:0.3s; }
+      .proc-card:nth-child(4) { animation-delay:0.4s; }
 
-<!-- ═══════════════════════════════════════════
-     MOBILE MENU OVERLAY — PREMIUM DARK
-═══════════════════════════════════════════ -->
-<div x-data
-     x-show="$store.nav.open"
-     x-transition:enter="transition ease-out duration-350"
-     x-transition:enter-start="opacity-0 -translate-y-3"
-     x-transition:enter-end="opacity-100 translate-y-0"
-     x-transition:leave="transition ease-in duration-250"
-     x-transition:leave-start="opacity-100 translate-y-0"
-     x-transition:leave-end="opacity-0 -translate-y-3"
-     x-cloak
-     class="mobile-overlay md:hidden fixed left-0 right-0 bottom-0 z-[99] overflow-y-auto"
-     style="background: #070B14;"
-     x-init="
-       const updateTop = () => {
-         const h = document.querySelector('header');
-         if (h) $el.style.top = h.getBoundingClientRect().bottom + 'px';
-       };
-       updateTop();
-       window.addEventListener('scroll', updateTop);
-       window.addEventListener('resize', updateTop);
-     ">
+      .proc-card:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(0,0,0,0.07); }
+      .proc-icon { transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1); flex-shrink:0; }
+      .proc-card:hover .proc-icon { transform:scale(1.15) rotate(-5deg); }
+      .proc-num { transition:color 0.2s; }
+      .proc-card:hover .proc-num { color:#FFC107 !important; }
+      /* Numéros en jaune par défaut */
+      .proc-num-val { color: rgba(255,193,7,0.25); }
+    </style>
 
-    <!-- Ligne séparatrice top avec dégradé -->
-    <div style="height:1px; background: linear-gradient(90deg, transparent, rgba(108,99,255,0.5), rgba(0,245,160,0.3), transparent);"></div>
+    <!-- ── MOBILE / TABLET : timeline verticale ── -->
+    <div class="flex flex-col gap-0 lg:hidden">
 
-    <!-- Bruit de fond subtil -->
-    <div style="position:absolute; inset:0; opacity:0.03; background-image:url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E'); pointer-events:none;"></div>
+      {% for step in "" %}{% endfor %}
 
-    <!-- Blob lumineux décoratif -->
-    <div style="position:absolute; top:-60px; right:-40px; width:260px; height:260px; background:radial-gradient(circle, rgba(108,99,255,.1), transparent 70%); pointer-events:none; border-radius:50%;"></div>
-    <div style="position:absolute; bottom:60px; left:-40px; width:180px; height:180px; background:radial-gradient(circle, rgba(0,245,160,.07), transparent 70%); pointer-events:none; border-radius:50%;"></div>
-
-    <div class="relative px-5 pt-6 pb-8 flex flex-col gap-1">
-
-        <!-- En-tête du menu -->
-        <div class="flex items-center justify-between mb-5 px-1">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(108,99,255,0.5); letter-spacing:.2em; text-transform:uppercase">
-                // navigation.menu
-            </div>
-            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(255,255,255,0.15); letter-spacing:.1em;">
-                v2.0.1
-            </div>
+      <!-- 01 -->
+      <div class="proc-card flex gap-4">
+        <div class="flex flex-col items-center" style="width:44px;flex-shrink:0;">
+          <div class="proc-icon w-11 h-11 rounded-xl flex items-center justify-center" style="background:#19124B;">
+            <svg width="20" height="20" fill="#FFC107" viewBox="0 0 24 24"><path d="M9 20h6v2H9zm-.83-4.95c.41.62.62 1.36.72 1.95H8v2h8v-2h-.89c.11-.59.31-1.33.72-1.94.36-.54.76-1.01 1.14-1.46 1-1.18 2.03-2.39 2.03-4.6 0-3.86-3.14-7-7-7S5 5.14 5 9c0 2.21 1.03 3.42 2.02 4.58.38.45.78.92 1.15 1.47"/></svg>
+          </div>
+          <div style="flex:1;width:2px;background:linear-gradient(180deg,#19124B,rgba(255,193,7,0.3));margin-top:6px;min-height:32px;"></div>
         </div>
-
-        <!-- Items de navigation -->
-        <a href="{% url 'home' %}" @click="$store.nav.close()"
-           class="m-nav-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
-            <span class="m-nav-num">01</span>
-            <span class="m-nav-label">Home</span>
-            {% if request.resolver_match.url_name == 'home' %}
-                <span class="m-nav-dot"></span>
-            {% else %}
-                <svg class="m-nav-arrow size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
-                </svg>
-            {% endif %}
-        </a>
-
-        <div class="m-nav-separator"></div>
-
-        <a href="{% url 'about' %}" @click="$store.nav.close()"
-           class="m-nav-item {% if request.resolver_match.url_name == 'about' %}active{% endif %}">
-            <span class="m-nav-num">02</span>
-            <span class="m-nav-label">About</span>
-            {% if request.resolver_match.url_name == 'about' %}
-                <span class="m-nav-dot"></span>
-            {% else %}
-                <svg class="m-nav-arrow size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
-                </svg>
-            {% endif %}
-        </a>
-
-        <div class="m-nav-separator"></div>
-
-        <a href="{% url 'experience' %}" @click="$store.nav.close()"
-           class="m-nav-item {% if request.resolver_match.url_name == 'experience' %}active{% endif %}">
-            <span class="m-nav-num">03</span>
-            <span class="m-nav-label">Experience</span>
-            {% if request.resolver_match.url_name == 'experience' %}
-                <span class="m-nav-dot"></span>
-            {% else %}
-                <svg class="m-nav-arrow size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
-                </svg>
-            {% endif %}
-        </a>
-
-        <div class="m-nav-separator"></div>
-
-        <a href="{% url 'blog' %}" @click="$store.nav.close()"
-           class="m-nav-item {% if request.resolver_match.url_name == 'blog' %}active{% endif %}">
-            <span class="m-nav-num">04</span>
-            <span class="m-nav-label">Blog</span>
-            {% if request.resolver_match.url_name == 'blog' %}
-                <span class="m-nav-dot"></span>
-            {% else %}
-                <svg class="m-nav-arrow size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
-                </svg>
-            {% endif %}
-        </a>
-
-        <div class="m-nav-separator"></div>
-
-        <a href="{% url 'contact' %}" @click="$store.nav.close()"
-           class="m-nav-item {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
-            <span class="m-nav-num">05</span>
-            <span class="m-nav-label">Contact</span>
-            {% if request.resolver_match.url_name == 'contact' %}
-                <span class="m-nav-dot"></span>
-            {% else %}
-                <svg class="m-nav-arrow size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
-                </svg>
-            {% endif %}
-        </a>
-
-        <!-- Footer du menu -->
-        <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent); margin: 1.5rem 0 1.25rem;"></div>
-
-        <!-- Badge + CTA -->
-        <div class="flex flex-col gap-3">
-            <div class="avail-badge">
-                <span class="avail-ping"></span>
-                <span style="font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; color:#00F5A0; letter-spacing:.1em;">
-                    Available for work
-                </span>
-            </div>
-
-            <a href="{% url 'contact' %}" @click="$store.nav.close()" class="hire-btn">
-                <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
-                </svg>
-                Hire Me
-            </a>
+        <div style="padding-bottom:28px;flex:1;">
+          <span class="proc-num" style="font-size:10px;font-weight:800;letter-spacing:0.12em;color:rgba(255,193,7,0.4);">01</span>
+          <h3 style="font-size:15px;font-weight:700;color:#19124B;margin:3px 0 5px;">{% trans "Discovery" %}</h3>
+          <p style="font-size:13px;line-height:1.65;color:#64748b;">{% trans "In-depth analysis of your ideas and market objectives." %}</p>
         </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="proc-card flex gap-4">
+        <div class="flex flex-col items-center" style="width:44px;flex-shrink:0;">
+          <div class="proc-icon w-11 h-11 rounded-xl flex items-center justify-center" style="background:#FFC107;">
+            <svg width="20" height="20" fill="#19124B" viewBox="0 0 24 24"><path d="M3.38 15.95c-.13.13-.22.29-.26.46l-1.08 4.34c-.09.34.01.7.26.95.19.19.45.29.71.29.08 0 .16 0 .24-.03l4.34-1.09c.18-.04.34-.13.46-.26L18.2 10.46l-4.67-4.67zM19.67 2.61c-.81-.81-2.14-.81-2.95 0l-1.78 1.78 4.67 4.67 1.78-1.78c.81-.81.81-2.13 0-2.95z"/></svg>
+          </div>
+          <div style="flex:1;width:2px;background:linear-gradient(180deg,rgba(255,193,7,0.6),#19124B);margin-top:6px;min-height:32px;"></div>
+        </div>
+        <div style="padding-bottom:28px;flex:1;">
+          <span class="proc-num" style="font-size:10px;font-weight:800;letter-spacing:0.12em;color:rgba(255,193,7,0.4);">02</span>
+          <h3 style="font-size:15px;font-weight:700;color:#19124B;margin:3px 0 5px;">{% trans "Strategy" %}</h3>
+          <p style="font-size:13px;line-height:1.65;color:#64748b;">{% trans "UI/UX design systems and technical roadmap planning." %}</p>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="proc-card flex gap-4">
+        <div class="flex flex-col items-center" style="width:44px;flex-shrink:0;">
+          <div class="proc-icon w-11 h-11 rounded-xl flex items-center justify-center" style="background:#19124B;">
+            <svg width="20" height="20" fill="#FFC107" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2M7.71 15.71 6.3 14.3l2.29-2.29L6.3 9.72l1.41-1.41 3.71 3.71-3.71 3.71ZM18 16h-6v-2h6z"/></svg>
+          </div>
+          <div style="flex:1;width:2px;background:linear-gradient(180deg,#19124B,rgba(255,193,7,0.3));margin-top:6px;min-height:32px;"></div>
+        </div>
+        <div style="padding-bottom:28px;flex:1;">
+          <span class="proc-num" style="font-size:10px;font-weight:800;letter-spacing:0.12em;color:rgba(255,193,7,0.4);">03</span>
+          <h3 style="font-size:15px;font-weight:700;color:#19124B;margin:3px 0 5px;">{% trans "Development" %}</h3>
+          <p style="font-size:13px;line-height:1.65;color:#64748b;">{% trans "High-performance coding using modern tech stacks." %}</p>
+        </div>
+      </div>
+
+      <!-- 04 — pas de ligne après -->
+      <div class="proc-card flex gap-4">
+        <div style="width:44px;flex-shrink:0;">
+          <div class="proc-icon w-11 h-11 rounded-xl flex items-center justify-center" style="background:#FFC107;">
+            <svg width="20" height="20" fill="#19124B" viewBox="0 0 24 24"><path d="M13.06 2.65a1.49 1.49 0 0 0-2.12 0L8.17 5.42C7.42 6.16 7 7.2 7 8.25v12.76h10V8.25c0-1.05-.43-2.08-1.17-2.83zM12 11c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11m6 1.97V21h3c.55 0 1-.45 1-1 0-3.69-2.34-5.92-4-7.03M2 20c0 .55.45 1 1 1h3v-8.03C4.34 14.09 2 16.31 2 20"/></svg>
+          </div>
+        </div>
+        <div style="flex:1;">
+          <span class="proc-num" style="font-size:10px;font-weight:800;letter-spacing:0.12em;color:rgba(255,193,7,0.4);">04</span>
+          <h3 style="font-size:15px;font-weight:700;color:#19124B;margin:3px 0 5px;">{% trans "Launch" %}</h3>
+          <p style="font-size:13px;line-height:1.65;color:#64748b;">{% trans "Deployment and continuous post-launch support." %}</p>
+        </div>
+      </div>
 
     </div>
-</div>
 
+    <!-- ── DESKTOP : grille 4 colonnes avec décalage ── -->
+    <div class="hidden lg:grid grid-cols-4 gap-5 relative">
 
-<!-- ═══════════════════════════════════════════
-     ALPINE STORE
-═══════════════════════════════════════════ -->
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store('nav', {
-            open: false,
-            toggle() { this.open = !this.open; },
-            close()  { this.open = false; }
-        });
-    });
-</script>
+      <!-- Ligne de connexion desktop -->
+      <div style="position:absolute;top:32px;left:calc(12.5% + 28px);right:calc(12.5% + 28px);height:1px;background:linear-gradient(90deg,transparent,rgba(255,193,7,0.4) 20%,rgba(255,193,7,0.4) 80%,transparent);z-index:0;pointer-events:none;"></div>
+
+      <!-- 01 -->
+      <div class="proc-card relative z-10" style="background:#19124B;border:1px solid rgba(255,193,7,0.15);border-radius:18px;padding:24px 20px;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:radial-gradient(circle,rgba(255,193,7,0.08),transparent 70%);pointer-events:none;"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div class="proc-icon w-12 h-12 rounded-xl flex items-center justify-center" style="background:rgba(255,193,7,0.15);border:1px solid rgba(255,193,7,0.2);">
+            <svg width="22" height="22" fill="#FFC107" viewBox="0 0 24 24"><path d="M9 20h6v2H9zm-.83-4.95c.41.62.62 1.36.72 1.95H8v2h8v-2h-.89c.11-.59.31-1.33.72-1.94.36-.54.76-1.01 1.14-1.46 1-1.18 2.03-2.39 2.03-4.6 0-3.86-3.14-7-7-7S5 5.14 5 9c0 2.21 1.03 3.42 2.02 4.58.38.45.78.92 1.15 1.47"/></svg>
+          </div>
+          <span class="proc-num" style="font-size:36px;font-weight:900;color:rgba(255,193,7,0.12);letter-spacing:-0.04em;line-height:1;">01</span>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;">{% trans "Discovery" %}</h3>
+        <p style="font-size:12.5px;line-height:1.65;color:rgba(255,255,255,0.45);">{% trans "In-depth analysis of your ideas and market objectives." %}</p>
+        <div style="margin-top:16px;height:2px;width:32px;background:linear-gradient(90deg,#FFC107,#FFD54F);border-radius:2px;"></div>
+      </div>
+
+      <!-- 02 — décalé vers le bas -->
+      <div class="proc-card relative z-10" style="background:#fff;border:1px solid rgba(255,193,7,0.3);border-radius:18px;padding:24px 20px;margin-top:48px;overflow:hidden;box-shadow:0 4px 24px rgba(255,193,7,0.08);">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:radial-gradient(circle,rgba(255,193,7,0.06),transparent 70%);pointer-events:none;"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div class="proc-icon w-12 h-12 rounded-xl flex items-center justify-center" style="background:#FFC107;">
+            <svg width="22" height="22" fill="#19124B" viewBox="0 0 24 24"><path d="M3.38 15.95c-.13.13-.22.29-.26.46l-1.08 4.34c-.09.34.01.7.26.95.19.19.45.29.71.29.08 0 .16 0 .24-.03l4.34-1.09c.18-.04.34-.13.46-.26L18.2 10.46l-4.67-4.67zM19.67 2.61c-.81-.81-2.14-.81-2.95 0l-1.78 1.78 4.67 4.67 1.78-1.78c.81-.81.81-2.13 0-2.95z"/></svg>
+          </div>
+          <span class="proc-num" style="font-size:36px;font-weight:900;color:rgba(25,18,75,0.07);letter-spacing:-0.04em;line-height:1;">02</span>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:#19124B;margin-bottom:8px;">{% trans "Strategy" %}</h3>
+        <p style="font-size:12.5px;line-height:1.65;color:#64748b;">{% trans "UI/UX design systems and technical roadmap planning." %}</p>
+        <div style="margin-top:16px;height:2px;width:32px;background:linear-gradient(90deg,#19124B,rgba(25,18,75,0.3));border-radius:2px;"></div>
+      </div>
+
+      <!-- 03 -->
+      <div class="proc-card relative z-10" style="background:#fff;border:1px solid rgba(255,193,7,0.3);border-radius:18px;padding:24px 20px;overflow:hidden;box-shadow:0 4px 24px rgba(255,193,7,0.08);">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:radial-gradient(circle,rgba(255,193,7,0.06),transparent 70%);pointer-events:none;"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div class="proc-icon w-12 h-12 rounded-xl flex items-center justify-center" style="background:#19124B;">
+            <svg width="22" height="22" fill="#FFC107" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2M7.71 15.71 6.3 14.3l2.29-2.29L6.3 9.72l1.41-1.41 3.71 3.71-3.71 3.71ZM18 16h-6v-2h6z"/></svg>
+          </div>
+          <span class="proc-num" style="font-size:36px;font-weight:900;color:rgba(25,18,75,0.07);letter-spacing:-0.04em;line-height:1;">03</span>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:#19124B;margin-bottom:8px;">{% trans "Development" %}</h3>
+        <p style="font-size:12.5px;line-height:1.65;color:#64748b;">{% trans "High-performance coding using modern tech stacks." %}</p>
+        <div style="margin-top:16px;height:2px;width:32px;background:linear-gradient(90deg,#FFC107,#FFD54F);border-radius:2px;"></div>
+      </div>
+
+      <!-- 04 — décalé vers le bas -->
+      <div class="proc-card relative z-10" style="background:#19124B;border:1px solid rgba(255,193,7,0.15);border-radius:18px;padding:24px 20px;margin-top:48px;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:radial-gradient(circle,rgba(255,193,7,0.08),transparent 70%);pointer-events:none;"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div class="proc-icon w-12 h-12 rounded-xl flex items-center justify-center" style="background:rgba(255,193,7,0.15);border:1px solid rgba(255,193,7,0.2);">
+            <svg width="22" height="22" fill="#FFC107" viewBox="0 0 24 24"><path d="M13.06 2.65a1.49 1.49 0 0 0-2.12 0L8.17 5.42C7.42 6.16 7 7.2 7 8.25v12.76h10V8.25c0-1.05-.43-2.08-1.17-2.83zM12 11c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11m6 1.97V21h3c.55 0 1-.45 1-1 0-3.69-2.34-5.92-4-7.03M2 20c0 .55.45 1 1 1h3v-8.03C4.34 14.09 2 16.31 2 20"/></svg>
+          </div>
+          <span class="proc-num" style="font-size:36px;font-weight:900;color:rgba(255,193,7,0.12);letter-spacing:-0.04em;line-height:1;">04</span>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;">{% trans "Launch" %}</h3>
+        <p style="font-size:12.5px;line-height:1.65;color:rgba(255,255,255,0.45);">{% trans "Deployment and continuous post-launch support." %}</p>
+        <div style="margin-top:16px;height:2px;width:32px;background:linear-gradient(90deg,#FFC107,#FFD54F);border-radius:2px;"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
